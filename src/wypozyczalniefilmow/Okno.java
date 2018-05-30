@@ -31,7 +31,7 @@ public class Okno extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LoginPanel = new javax.swing.JLayeredPane();
+        loginPanel = new javax.swing.JLayeredPane();
         LoginField = new javax.swing.JTextField();
         PasswordField = new javax.swing.JPasswordField();
         LoginLabel = new javax.swing.JLabel();
@@ -40,9 +40,26 @@ public class Okno extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         RejestracjaButton = new javax.swing.JButton();
         ZalogujSieLabel = new javax.swing.JLabel();
-        MenuPanel = new javax.swing.JLayeredPane();
+        menuPanel = new javax.swing.JLayeredPane();
+        tabPanel = new javax.swing.JTabbedPane();
+        przegladajTab = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
+        dodajTab = new javax.swing.JPanel();
+        kontoTab = new javax.swing.JPanel();
+        nazwaKontaLabel = new javax.swing.JLabel();
+        idLabel = new javax.swing.JLabel();
+        nazwaKontaDB = new javax.swing.JLabel();
+        idDB = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        zmienHasloButton = new javax.swing.JButton();
+        twojeRezerwacjeLabel = new javax.swing.JLabel();
+        wylogujButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        twojeRezerwacjeText = new javax.swing.JTextPane();
+        historiaTranskacjiButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,57 +89,57 @@ public class Okno extends javax.swing.JFrame {
         ZalogujSieLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         ZalogujSieLabel.setText("Logowanie");
 
-        LoginPanel.setLayer(LoginField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        LoginPanel.setLayer(PasswordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        LoginPanel.setLayer(LoginLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        LoginPanel.setLayer(PasswordLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        LoginPanel.setLayer(ZalogujButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        LoginPanel.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        LoginPanel.setLayer(RejestracjaButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        LoginPanel.setLayer(ZalogujSieLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(LoginField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(PasswordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(LoginLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(PasswordLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(ZalogujButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(RejestracjaButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(ZalogujSieLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
-        LoginPanel.setLayout(LoginPanelLayout);
-        LoginPanelLayout.setHorizontalGroup(
-            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
+        loginPanel.setLayout(loginPanelLayout);
+        loginPanelLayout.setHorizontalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
-                        .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
+                        .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(PasswordLabel))
                         .addGap(18, 18, 18)
-                        .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ZalogujButton)
-                            .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(LoginField, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                                 .addComponent(PasswordField)))
                         .addGap(267, 267, 267))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(318, 318, 318))))
-            .addGroup(LoginPanelLayout.createSequentialGroup()
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
+            .addGroup(loginPanelLayout.createSequentialGroup()
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(loginPanelLayout.createSequentialGroup()
                         .addGap(343, 343, 343)
                         .addComponent(ZalogujSieLabel))
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
+                    .addGroup(loginPanelLayout.createSequentialGroup()
                         .addGap(363, 363, 363)
                         .addComponent(RejestracjaButton)))
                 .addContainerGap(379, Short.MAX_VALUE))
         );
-        LoginPanelLayout.setVerticalGroup(
-            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginPanelLayout.createSequentialGroup()
+        loginPanelLayout.setVerticalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
                 .addContainerGap(121, Short.MAX_VALUE)
                 .addComponent(ZalogujSieLabel)
                 .addGap(52, 52, 52)
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LoginLabel))
                 .addGap(18, 18, 18)
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PasswordLabel)
                     .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
@@ -134,29 +151,156 @@ public class Okno extends javax.swing.JFrame {
                 .addGap(87, 87, 87))
         );
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jEditorPane1.setText("asjkdnasndasdasd");
+        jEditorPane1.setEditable(false);
+        jScrollPane3.setViewportView(jEditorPane1);
 
-        MenuPanel.setVisible(false);
-
-        MenuPanel.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
-        MenuPanel.setLayout(MenuPanelLayout);
-        MenuPanelLayout.setHorizontalGroup(
-            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuPanelLayout.createSequentialGroup()
-                .addGap(233, 233, 233)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+        javax.swing.GroupLayout przegladajTabLayout = new javax.swing.GroupLayout(przegladajTab);
+        przegladajTab.setLayout(przegladajTabLayout);
+        przegladajTabLayout.setHorizontalGroup(
+            przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
         );
-        MenuPanelLayout.setVerticalGroup(
-            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuPanelLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+        przegladajTabLayout.setVerticalGroup(
+            przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+        );
+
+        tabPanel.addTab("                                                      Przeglądaj                                                       ", przegladajTab);
+
+        javax.swing.GroupLayout dodajTabLayout = new javax.swing.GroupLayout(dodajTab);
+        dodajTab.setLayout(dodajTabLayout);
+        dodajTabLayout.setHorizontalGroup(
+            dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 845, Short.MAX_VALUE)
+        );
+        dodajTabLayout.setVerticalGroup(
+            dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 485, Short.MAX_VALUE)
+        );
+
+        tabPanel.addTab("                                            Dodaj                                                    ", dodajTab);
+
+        nazwaKontaLabel.setText("Nazwa konta:");
+
+        idLabel.setText("Id:");
+
+        nazwaKontaDB.setText("***");
+
+        idDB.setText("***");
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        zmienHasloButton.setText("Zmień hasło");
+
+        twojeRezerwacjeLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        twojeRezerwacjeLabel.setText("Twoje Rezerwacje");
+
+        wylogujButton.setText("Wyloguj");
+        wylogujButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                wylogujButtonMouseClicked(evt);
+            }
+        });
+
+        twojeRezerwacjeText.setEditable(false);
+        jScrollPane2.setViewportView(twojeRezerwacjeText);
+
+        historiaTranskacjiButton.setText("Zobacz historię transakcji");
+
+        jButton1.setText("Anuluj rezerwację");
+
+        javax.swing.GroupLayout kontoTabLayout = new javax.swing.GroupLayout(kontoTab);
+        kontoTab.setLayout(kontoTabLayout);
+        kontoTabLayout.setHorizontalGroup(
+            kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kontoTabLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(idLabel)
+                    .addComponent(nazwaKontaLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nazwaKontaDB)
+                    .addComponent(idDB)
+                    .addComponent(zmienHasloButton))
+                .addGap(71, 71, 71)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kontoTabLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(twojeRezerwacjeLabel)
+                        .addContainerGap())
+                    .addGroup(kontoTabLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kontoTabLayout.createSequentialGroup()
+                                .addComponent(historiaTranskacjiButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(kontoTabLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                                .addComponent(wylogujButton)
+                                .addGap(47, 47, 47))))))
+            .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kontoTabLayout.createSequentialGroup()
+                    .addGap(692, 692, 692)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(151, Short.MAX_VALUE)))
+        );
+        kontoTabLayout.setVerticalGroup(
+            kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kontoTabLayout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(kontoTabLayout.createSequentialGroup()
+                        .addComponent(twojeRezerwacjeLabel)
+                        .addGap(18, 18, 18)
+                        .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(wylogujButton)
+                            .addComponent(jScrollPane2)))
+                    .addGroup(kontoTabLayout.createSequentialGroup()
+                        .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nazwaKontaLabel)
+                            .addComponent(nazwaKontaDB))
+                        .addGap(18, 18, 18)
+                        .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(idLabel)
+                            .addComponent(idDB))
+                        .addGap(44, 44, 44)
+                        .addComponent(zmienHasloButton))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(historiaTranskacjiButton)
+                    .addComponent(jButton1))
+                .addContainerGap(76, Short.MAX_VALUE))
+            .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kontoTabLayout.createSequentialGroup()
+                    .addGap(83, 83, 83)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(95, Short.MAX_VALUE)))
+        );
+
+        tabPanel.addTab("      Konto       ", kontoTab);
+
+        menuPanel.setVisible(false);
+
+        menuPanel.setLayer(tabPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
+        menuPanel.setLayout(menuPanelLayout);
+        menuPanelLayout.setHorizontalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabPanel)
+        );
+        menuPanelLayout.setVerticalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabPanel, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,22 +308,16 @@ public class Okno extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 15, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(MenuPanel)
-                    .addContainerGap()))
+                .addComponent(menuPanel))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(MenuPanel)
-                    .addContainerGap()))
+                .addComponent(menuPanel))
         );
 
         pack();
@@ -191,9 +329,14 @@ public class Okno extends javax.swing.JFrame {
     }//GEN-LAST:event_LoginFieldMouseClicked
 
     private void ZalogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ZalogujButtonMouseClicked
-        LoginPanel.setVisible(false);
-        MenuPanel.setVisible(true);
+        loginPanel.setVisible(false);
+        menuPanel.setVisible(true);
     }//GEN-LAST:event_ZalogujButtonMouseClicked
+
+    private void wylogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wylogujButtonMouseClicked
+        menuPanel.setVisible(false);
+        loginPanel.setVisible(true);
+    }//GEN-LAST:event_wylogujButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -233,15 +376,32 @@ public class Okno extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField LoginField;
     private javax.swing.JLabel LoginLabel;
-    private javax.swing.JLayeredPane LoginPanel;
-    private javax.swing.JLayeredPane MenuPanel;
     private javax.swing.JPasswordField PasswordField;
     private javax.swing.JLabel PasswordLabel;
     private javax.swing.JButton RejestracjaButton;
     private javax.swing.JButton ZalogujButton;
     private javax.swing.JLabel ZalogujSieLabel;
+    private javax.swing.JPanel dodajTab;
+    private javax.swing.JButton historiaTranskacjiButton;
+    private javax.swing.JLabel idDB;
+    private javax.swing.JLabel idLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JPanel kontoTab;
+    private javax.swing.JLayeredPane loginPanel;
+    private javax.swing.JLayeredPane menuPanel;
+    private javax.swing.JLabel nazwaKontaDB;
+    private javax.swing.JLabel nazwaKontaLabel;
+    private javax.swing.JPanel przegladajTab;
+    private javax.swing.JTabbedPane tabPanel;
+    private javax.swing.JLabel twojeRezerwacjeLabel;
+    private javax.swing.JTextPane twojeRezerwacjeText;
+    private javax.swing.JButton wylogujButton;
+    private javax.swing.JButton zmienHasloButton;
     // End of variables declaration//GEN-END:variables
 }
