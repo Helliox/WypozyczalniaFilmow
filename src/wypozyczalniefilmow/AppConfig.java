@@ -12,8 +12,9 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Rozkurwozaur
  */
+//dsfsdf
 @Configuration
-@ComponentScan("wyporzyczalniefilmow")
+@ComponentScan("wypozyczalniefilmow")
 public class AppConfig 
 {
     public Okno getOkno()
