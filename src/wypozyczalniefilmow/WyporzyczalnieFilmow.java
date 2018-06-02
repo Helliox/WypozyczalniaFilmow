@@ -22,6 +22,8 @@ public class WyporzyczalnieFilmow {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         
         Okno frame1 = context.getBean(Okno.class);
+        frame1.setTitle("Wyporzyczalnia Filmów XD");
+        frame1.setLocationRelativeTo(null);
         frame1.setVisible(true);
     }
     

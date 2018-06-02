@@ -7,6 +7,11 @@ package wypozyczalniefilmow;
 
 import org.springframework.stereotype.Component;
 import java.awt.Color;
+import filmentity.Entity;
+import java.awt.GridLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -43,9 +48,9 @@ public class Okno extends javax.swing.JFrame {
         menuPanel = new javax.swing.JLayeredPane();
         tabPanel = new javax.swing.JTabbedPane();
         przegladajTab = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
+        jButton2 = new javax.swing.JButton();
         dodajTab = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
         kontoTab = new javax.swing.JPanel();
         nazwaKontaLabel = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
@@ -85,6 +90,11 @@ public class Okno extends javax.swing.JFrame {
         jLabel1.setText("Nie masz konta? Zarejestruj");
 
         RejestracjaButton.setText("Rejestracja");
+        RejestracjaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RejestracjaButtonMouseClicked(evt);
+            }
+        });
 
         ZalogujSieLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         ZalogujSieLabel.setText("Logowanie");
@@ -151,32 +161,49 @@ public class Okno extends javax.swing.JFrame {
                 .addGap(87, 87, 87))
         );
 
-        jEditorPane1.setText("asjkdnasndasdasd");
-        jEditorPane1.setEditable(false);
-        jScrollPane3.setViewportView(jEditorPane1);
+        jButton2.setText("jButton2");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout przegladajTabLayout = new javax.swing.GroupLayout(przegladajTab);
         przegladajTab.setLayout(przegladajTabLayout);
         przegladajTabLayout.setHorizontalGroup(
             przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+            .addGroup(przegladajTabLayout.createSequentialGroup()
+                .addGap(363, 363, 363)
+                .addComponent(jButton2)
+                .addContainerGap(409, Short.MAX_VALUE))
         );
         przegladajTabLayout.setVerticalGroup(
             przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addGroup(przegladajTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addContainerGap(451, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("                                                      Przeglądaj                                                       ", przegladajTab);
+
+        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout dodajTabLayout = new javax.swing.GroupLayout(dodajTab);
         dodajTab.setLayout(dodajTabLayout);
         dodajTabLayout.setHorizontalGroup(
             dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 845, Short.MAX_VALUE)
+            .addGroup(dodajTabLayout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(418, Short.MAX_VALUE))
         );
         dodajTabLayout.setVerticalGroup(
             dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
+            .addGroup(dodajTabLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(408, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("                                            Dodaj                                                    ", dodajTab);
@@ -338,6 +365,26 @@ public class Okno extends javax.swing.JFrame {
         loginPanel.setVisible(true);
     }//GEN-LAST:event_wylogujButtonMouseClicked
 
+    private void RejestracjaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RejestracjaButtonMouseClicked
+        Rejestracja rej = new Rejestracja();
+        rej.setTitle("Rejestracja");
+        rej.setLocationRelativeTo(null);
+        rej.setVisible(true);
+    }//GEN-LAST:event_RejestracjaButtonMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        JFrame test = new JFrame();
+        JLabel la = new JLabel("asdasd");
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout());
+        panel.add(la);
+        test.add(panel);
+        pack();
+        //test.add(la);
+        //test.add(filmentity.Entity.add());
+        test.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -386,12 +433,12 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JLabel idDB;
     private javax.swing.JLabel idLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel kontoTab;
     private javax.swing.JLayeredPane loginPanel;
     private javax.swing.JLayeredPane menuPanel;
