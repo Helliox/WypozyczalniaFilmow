@@ -8,10 +8,13 @@ package wypozyczalniefilmow;
 import org.springframework.stereotype.Component;
 import java.awt.Color;
 import filmentity.Entity;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -49,6 +52,9 @@ public class Okno extends javax.swing.JFrame {
         tabPanel = new javax.swing.JTabbedPane();
         przegladajTab = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        panelTEST = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textTEST = new javax.swing.JTextPane();
         dodajTab = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         kontoTab = new javax.swing.JPanel();
@@ -168,21 +174,50 @@ public class Okno extends javax.swing.JFrame {
             }
         });
 
+        panelTEST.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelTEST.setLayout(new GridLayout());
+        panelTEST.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout panelTESTLayout = new javax.swing.GroupLayout(panelTEST);
+        panelTEST.setLayout(panelTESTLayout);
+        panelTESTLayout.setHorizontalGroup(
+            panelTESTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 738, Short.MAX_VALUE)
+        );
+        panelTESTLayout.setVerticalGroup(
+            panelTESTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 143, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(textTEST);
+
         javax.swing.GroupLayout przegladajTabLayout = new javax.swing.GroupLayout(przegladajTab);
         przegladajTab.setLayout(przegladajTabLayout);
         przegladajTabLayout.setHorizontalGroup(
             przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(przegladajTabLayout.createSequentialGroup()
-                .addGap(363, 363, 363)
-                .addComponent(jButton2)
-                .addContainerGap(409, Short.MAX_VALUE))
+                .addGroup(przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(przegladajTabLayout.createSequentialGroup()
+                        .addGap(363, 363, 363)
+                        .addComponent(jButton2))
+                    .addGroup(przegladajTabLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(panelTEST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(przegladajTabLayout.createSequentialGroup()
+                        .addGap(326, 326, 326)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         przegladajTabLayout.setVerticalGroup(
             przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(przegladajTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2)
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(panelTEST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("                                                      Przeglądaj                                                       ", przegladajTab);
@@ -373,16 +408,24 @@ public class Okno extends javax.swing.JFrame {
     }//GEN-LAST:event_RejestracjaButtonMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        JFrame test = new JFrame();
-        JLabel la = new JLabel("asdasd");
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout());
-        panel.add(la);
-        test.add(panel);
-        pack();
+        JLabel _la = new JLabel("XD");
+        
+        panel.setLayout(new BorderLayout());
+        panel.setSize(50,50);
+        panel.add(_la);
+        JTextField asd = new JTextField();
+        //panel.add(la);
+        panelTEST.add(panel);
+        panelTEST.setOpaque(true);
+        panelTEST.setBackground(Color.BLUE);
+        //SwingUtilities.updateComponentTreeUI(panelTEST);
+        //panelTEST.validate();
+        panelTEST.revalidate();
+        panelTEST.repaint();
+        textTEST.setText("asda");
         //test.add(la);
         //test.add(filmentity.Entity.add());
-        test.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
 
     /**
@@ -435,6 +478,7 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
@@ -444,8 +488,10 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JLayeredPane menuPanel;
     private javax.swing.JLabel nazwaKontaDB;
     private javax.swing.JLabel nazwaKontaLabel;
+    private javax.swing.JPanel panelTEST;
     private javax.swing.JPanel przegladajTab;
     private javax.swing.JTabbedPane tabPanel;
+    private javax.swing.JTextPane textTEST;
     private javax.swing.JLabel twojeRezerwacjeLabel;
     private javax.swing.JTextPane twojeRezerwacjeText;
     private javax.swing.JButton wylogujButton;
