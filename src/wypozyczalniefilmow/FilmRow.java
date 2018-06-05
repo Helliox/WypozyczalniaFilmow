@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package filmentity;
+package wypozyczalniefilmow;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  *
  * @author Rozkurwozaur
  */
-public class Entity {
+public class FilmRow {
     
     public static JPanel add(JPanel panel)
     {

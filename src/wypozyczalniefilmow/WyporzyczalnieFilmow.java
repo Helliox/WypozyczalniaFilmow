@@ -5,6 +5,7 @@
  */
 package wypozyczalniefilmow;
 
+import JFrames.Okno;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

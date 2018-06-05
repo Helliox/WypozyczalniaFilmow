@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wypozyczalniefilmow;
+package JFrames;
 
 import org.springframework.stereotype.Component;
 import java.awt.Color;
-import filmentity.Entity;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -18,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import wypozyczalniefilmow.FilmRow;
 
 /**
  *
@@ -410,7 +410,7 @@ public class Okno extends javax.swing.JFrame {
         JPanel panel = new JPanel();
         //panelTEST.setLayout(new BoxLayout(panelTEST, BoxLayout.PAGE_AXIS));
         przegladajPanel.setLayout(new BoxLayout(przegladajPanel,BoxLayout.Y_AXIS));
-        Entity.add(panel);
+        FilmRow.add(panel);
         przegladajPanel.add(panel);
         przegladajPanel.revalidate();
         przegladajPanel.repaint();

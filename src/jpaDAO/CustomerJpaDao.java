@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wypozyczalniefilmow;
+package jpaDAO;
 
 /**
  *
  * @author Rozkurwozaur
  */
-public interface Interface {
+public class CustomerJpaDao {
     
 }
