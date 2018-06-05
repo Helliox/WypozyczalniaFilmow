@@ -5,7 +5,9 @@
  */
 package filmentity;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import javafx.scene.layout.Border;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -17,14 +19,18 @@ import javax.swing.JPanel;
  */
 public class Entity {
     
-    public static JLabel add()
+    public static JPanel add(JPanel panel)
     {
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel("XDXDXD");
-        panel.add(label);
-        javax.swing.border.Border blackline = BorderFactory.createLineBorder(Color.black);
+        JLabel label = new JLabel("XD2");
+        javax.swing.border.Border blackline = BorderFactory.createLoweredBevelBorder();
+        //panel.setPreferredSize(new Dimension(150, 100));
+        panel.setMaximumSize(new Dimension(850,70));
+        panel.setPreferredSize(new Dimension(850,70));
+        panel.setMinimumSize(new Dimension(850,70));
+        //asd
         panel.setBorder(blackline);
-        return label;
+        panel.add(label);
+        return panel;
     }
     
 }
