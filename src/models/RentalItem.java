@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="RENTAL_ITEM", schema="APP")
+@Table(name="RENTAL_ITEM", schema="ASD")
 public class RentalItem extends Abstract {
       
     @Id private Long id;

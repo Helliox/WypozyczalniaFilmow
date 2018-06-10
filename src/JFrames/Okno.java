@@ -7,28 +7,26 @@ package JFrames;
 
 import org.springframework.stereotype.Component;
 import java.awt.Color;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import javax.persistence.EntityManager;
 import javax.swing.BoxLayout;
-import static javax.swing.BoxLayout.Y_AXIS;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import jpaDAO.CustomerJpaDao;
+import jpaDAO.GenericJpaDao;
+import models.Customer;
 import wypozyczalniefilmow.FilmRow;
 
 /**
  *
  * @author Rozkurwozaur
  */
+
 @Component
 public class Okno extends javax.swing.JFrame {
 
     /**
      * Creates new form Okno
      */
+    
     public Okno() {
         initComponents();
     }
@@ -404,6 +402,7 @@ public class Okno extends javax.swing.JFrame {
         rej.setTitle("Rejestracja");
         rej.setLocationRelativeTo(null);
         rej.setVisible(true);
+        
     }//GEN-LAST:event_RejestracjaButtonMouseClicked
 
     private void szukajButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_szukajButtonMouseClicked

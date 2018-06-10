@@ -12,7 +12,7 @@ import javax.persistence.Table;
  * @author DanPat
  */
 @Entity
-@Table(name = "WORKER", schema = "APP")
+@Table(name = "WORKER", schema = "ASD")
 public class Worker extends Abstract{
     @Id private Long id;
     private String login;

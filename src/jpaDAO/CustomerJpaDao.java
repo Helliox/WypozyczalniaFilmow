@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package jpaDAO;
+import models.Customer;
+import Interface.CustomerDao;
+
 
 /**
  *
  * @author Rozkurwozaur
  */
-public class CustomerJpaDao {
-    
+public class CustomerJpaDao extends GenericJpaDao<Customer, Long> implements CustomerDao {   
 }
+

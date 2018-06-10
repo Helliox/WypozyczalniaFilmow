@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="PRODUCT", schema="APP")
+@Table(name="PRODUCT", schema="ASD")
 public class Product extends Abstract {
     
     

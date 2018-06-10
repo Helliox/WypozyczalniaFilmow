@@ -9,6 +9,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import javax.persistence.EntityManager;
 import factory.JpaFactory;
+
+import org.springframework.stereotype.Service;
 /**
  *
  * @author Rozkurwozaur
@@ -24,7 +26,11 @@ public class GenericJpaDao<T, K> implements GenericDao<T, K> {
     }
     @Override
     public void save(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist(t);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override

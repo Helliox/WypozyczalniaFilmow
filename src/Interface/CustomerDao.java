@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package Interface;
-
+import models.Customer;
 /**
  *
  * @author Rozkurwozaur
  */
-public interface CustomerDao {
+public interface CustomerDao extends GenericDao<Customer,Long> {
     
 }

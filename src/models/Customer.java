@@ -5,6 +5,8 @@
  */
 package models;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -15,13 +17,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Rozkurwozaur
  */
 @Entity
-@Table(name = "CUSTOMER", schema = "APP")
+@Table(name = "CUSTOMER", schema = "ASD")
 @XmlRootElement
 @NamedQueries({
     
 })
 public class Customer extends Abstract{
-    @Id private Long id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     private String email;
     private String firstName;
     private String lastName;

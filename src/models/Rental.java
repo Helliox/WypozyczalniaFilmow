@@ -21,7 +21,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="RENTAL", schema="APP")
+@Table(name="RENTAL", schema="ASD")
 public class Rental extends Abstract {
       
     @Id private Long id;
@@ -29,7 +29,7 @@ public class Rental extends Abstract {
     @ManyToOne
     private Customer customer;
     
-     @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval=true)
+     @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<RentalItem> rentalItems = new LinkedList<RentalItem>();
 
     public Timestamp getData() {
