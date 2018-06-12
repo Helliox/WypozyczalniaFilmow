@@ -35,12 +35,21 @@ public class GenericJpaDao<T, K> implements GenericDao<T, K> {
 
     @Override
     public void delete(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        t = em.merge(t);
+        em.remove(t);
+        em.getTransaction().commit();
+        em.close();    
     }
 
     @Override
     public void update(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.merge(t);
+        em.getTransaction().commit();
+        em.close();    
     }
 
     @Override
@@ -53,7 +62,10 @@ public class GenericJpaDao<T, K> implements GenericDao<T, K> {
     @Override
     public T findByName(K name)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        EntityManager em = getEntityManager();
+        T dto = em.find(type, name);
+        em.close();
+        return dto;
     }
     protected EntityManager getEntityManager() {
         return JpaFactory.getEntityManager();
