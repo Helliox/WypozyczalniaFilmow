@@ -16,4 +16,5 @@ public interface GenericDao <T, K>{
     void delete (T t);
     void update (T t);
     T findById(K id);
+    T findByName(K name);
 }

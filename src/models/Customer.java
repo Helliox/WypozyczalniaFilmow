@@ -29,6 +29,8 @@ public class Customer extends Abstract{
     private String email;
     private String firstName;
     private String lastName;
+    private String login;
+    private String haslo;
     public String getFirstName() {
         return firstName;
     }
@@ -52,7 +54,22 @@ public class Customer extends Abstract{
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public void setLogin(String login)  {
+        this.login = login;
+    }
+    
+    public String getLogin()  {
+        return login;
+    }
+    
+    public void setHaslo(String haslo)  {
+        this.haslo = haslo;
+    }
 
+    public String getHaslo()    {
+        return haslo;
+    }
     @Override
     public String toString() {
         return "["+getId()+","+firstName+","+lastName+","+email+"]";

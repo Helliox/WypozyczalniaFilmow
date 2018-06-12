@@ -50,6 +50,11 @@ public class GenericJpaDao<T, K> implements GenericDao<T, K> {
         em.close();
         return dto;
     }
+    @Override
+    public T findByName(K name)
+    {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     protected EntityManager getEntityManager() {
         return JpaFactory.getEntityManager();
     }
