@@ -6,6 +6,10 @@
 
 package JFrames;
 
+import javax.swing.JOptionPane;
+import jpaDAO.CustomerJpaDao;
+import models.Customer;
+
 /**
  *
  * @author Rozkurwozaur
@@ -16,7 +20,42 @@ public class Rejestracja extends javax.swing.JFrame {
     public Rejestracja() {
         initComponents();
     }
-
+    public void Zarejestruj()
+    {
+        String email = emailTextField.getText();
+        String firstName = imieTextField.getText();
+        String lastName = nazwiskoTextField.getText();
+        String login = loginTextField.getText();
+        char[] hasloTEMP = hasloTextField.getPassword();
+        char[] phasloTEMP = phasloTextField.getPassword();
+        String haslo = new String(hasloTEMP);
+        String phaslo = new String(phasloTEMP);
+        if(haslo.equals(phaslo))
+        {
+            CustomerJpaDao cdao = new CustomerJpaDao();
+            Customer customer = new Customer();
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setEmail(email);
+            customer.setLogin(login);
+            customer.setHaslo(haslo);
+            cdao.save(customer);
+            int input = JOptionPane.showOptionDialog(this,"Pomyślnie stworzono konto.","Rejestracja",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE,null,null,null);
+            if( input == JOptionPane.OK_OPTION)
+            {
+                dispose();
+            }
+            else
+            {
+                dispose();
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Hasła muszą być takie same!.","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -33,11 +72,13 @@ public class Rejestracja extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         imieTextField = new javax.swing.JTextField();
-        nazwiskotextField = new javax.swing.JTextField();
+        nazwiskoTextField = new javax.swing.JTextField();
         hasloTextField = new javax.swing.JPasswordField();
-        phasloTextField = new javax.swing.JPasswordField();
         akceptButton = new javax.swing.JButton();
         anulujButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        loginTextField = new javax.swing.JTextField();
+        phasloTextField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -47,11 +88,16 @@ public class Rejestracja extends javax.swing.JFrame {
 
         jLabel3.setText("Nazwisko:");
 
-        jLabel4.setText("Hasło:");
+        jLabel4.setText("Login:");
 
-        jLabel5.setText("Powtórz hasło:");
+        jLabel5.setText("Hasło:");
 
         akceptButton.setText("Akceptuj");
+        akceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                akceptButtonActionPerformed(evt);
+            }
+        });
 
         anulujButton.setText("Anuluj");
         anulujButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -60,31 +106,49 @@ public class Rejestracja extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Powtórz hasło:");
+
+        loginTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginTextFieldActionPerformed(evt);
+            }
+        });
+
+        phasloTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phasloTextFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hasloTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(loginTextField)
+                            .addComponent(imieTextField)
+                            .addComponent(emailTextField)
+                            .addComponent(nazwiskoTextField)
+                            .addComponent(phasloTextField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
                         .addComponent(akceptButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(anulujButton))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(hasloTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                        .addComponent(nazwiskotextField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(imieTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(emailTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(phasloTextField)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addComponent(anulujButton)))
+                .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,20 +164,24 @@ public class Rejestracja extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(nazwiskotextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nazwiskoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
+                    .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
                     .addComponent(hasloTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
                     .addComponent(phasloTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(akceptButton)
                     .addComponent(anulujButton))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -122,6 +190,18 @@ public class Rejestracja extends javax.swing.JFrame {
     private void anulujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anulujButtonMouseClicked
         dispose();
     }//GEN-LAST:event_anulujButtonMouseClicked
+
+    private void phasloTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phasloTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phasloTextFieldActionPerformed
+
+    private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginTextFieldActionPerformed
+
+    private void akceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_akceptButtonActionPerformed
+        Zarejestruj();
+    }//GEN-LAST:event_akceptButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,7 +249,9 @@ public class Rejestracja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField nazwiskotextField;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField loginTextField;
+    private javax.swing.JTextField nazwiskoTextField;
     private javax.swing.JPasswordField phasloTextField;
     // End of variables declaration//GEN-END:variables
 

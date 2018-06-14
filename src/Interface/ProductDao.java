@@ -9,6 +9,6 @@ import models.Product;
  *
  * @author DanPat
  */
-public interface ProductDao extends GenericDao<Product,Long>  {
-    
+public interface ProductDao<T, K> extends GenericDao<Product,Long>  {
+    T findByName(K name);
 }

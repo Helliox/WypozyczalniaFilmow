@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package models;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.lang.Object;
 /**
  *
  * @author Rozkurwozaur
@@ -26,11 +28,25 @@ public class Customer extends Abstract{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+    @Column(nullable=false)
     private String email;
+    @Column(nullable=false)
     private String firstName;
+    @Column(nullable=false)
     private String lastName;
+    @Column(nullable=false)
     private String login;
+    @Column(nullable=false)
     private String haslo;
+    @Column
+    private boolean active;
+    
+    public Customer()
+    {
+        super();
+        this.active=false;
+    }
+    
     public String getFirstName() {
         return firstName;
     }

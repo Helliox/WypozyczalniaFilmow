@@ -26,14 +26,6 @@ public class WyporzyczalnieFilmow {
         //Customer customer = em.find(Customer.class, 0);
         //System.out.println(customer.getLastName());
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        //*******Testowanie JPA*****
-        CustomerJpaDao cdao = new CustomerJpaDao();
-        Customer customer = new Customer();
-        customer.setFirstName("asd1");
-        customer.setLastName("sdf1");
-        customer.setEmail("aaa@one2t.pl");
-        cdao.save(customer);
-        //**************************
         Okno frame1 = context.getBean(Okno.class);
         frame1.setTitle("Wyporzyczalnia Filmów XD");
         frame1.setLocationRelativeTo(null);

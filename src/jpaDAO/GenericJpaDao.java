@@ -59,14 +59,7 @@ public class GenericJpaDao<T, K> implements GenericDao<T, K> {
         em.close();
         return dto;
     }
-    @Override
-    public T findByName(K name)
-    {
-        EntityManager em = getEntityManager();
-        T dto = em.find(type, name);
-        em.close();
-        return dto;
-    }
+    
     protected EntityManager getEntityManager() {
         return JpaFactory.getEntityManager();
     }

@@ -30,7 +30,12 @@ public class Okno extends javax.swing.JFrame {
     public Okno() {
         initComponents();
     }
-
+    public void Zaloguj()
+    {
+        String name = loginField.getText();
+        char[] passwordTEMP = passwordField.getPassword();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,13 +46,13 @@ public class Okno extends javax.swing.JFrame {
     private void initComponents() {
 
         loginPanel = new javax.swing.JLayeredPane();
-        LoginField = new javax.swing.JTextField();
-        PasswordField = new javax.swing.JPasswordField();
-        LoginLabel = new javax.swing.JLabel();
-        PasswordLabel = new javax.swing.JLabel();
-        ZalogujButton = new javax.swing.JButton();
+        loginField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
+        loginLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        zlogujButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        RejestracjaButton = new javax.swing.JButton();
+        rejestracjaButton = new javax.swing.JButton();
         ZalogujSieLabel = new javax.swing.JLabel();
         menuPanel = new javax.swing.JLayeredPane();
         tabPanel = new javax.swing.JTabbedPane();
@@ -75,44 +80,44 @@ public class Okno extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        LoginField.setForeground(new java.awt.Color(204, 204, 204));
-        LoginField.setText("Nazwa użytkownika");
-        LoginField.addMouseListener(new java.awt.event.MouseAdapter() {
+        loginField.setForeground(new java.awt.Color(204, 204, 204));
+        loginField.setText("Nazwa użytkownika");
+        loginField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LoginFieldMouseClicked(evt);
+                loginFieldMouseClicked(evt);
             }
         });
 
-        LoginLabel.setText("Login:");
+        loginLabel.setText("Login:");
 
-        PasswordLabel.setText("Hasło:");
+        passwordLabel.setText("Hasło:");
 
-        ZalogujButton.setText("Zaloguj");
-        ZalogujButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        zlogujButton.setText("Zaloguj");
+        zlogujButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ZalogujButtonMouseClicked(evt);
+                zlogujButtonMouseClicked(evt);
             }
         });
 
         jLabel1.setText("Nie masz konta? Zarejestruj");
 
-        RejestracjaButton.setText("Rejestracja");
-        RejestracjaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        rejestracjaButton.setText("Rejestracja");
+        rejestracjaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RejestracjaButtonMouseClicked(evt);
+                rejestracjaButtonMouseClicked(evt);
             }
         });
 
         ZalogujSieLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         ZalogujSieLabel.setText("Logowanie");
 
-        loginPanel.setLayer(LoginField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        loginPanel.setLayer(PasswordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        loginPanel.setLayer(LoginLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        loginPanel.setLayer(PasswordLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        loginPanel.setLayer(ZalogujButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(loginField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(passwordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(loginLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(passwordLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(zlogujButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         loginPanel.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        loginPanel.setLayer(RejestracjaButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(rejestracjaButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         loginPanel.setLayer(ZalogujSieLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
@@ -124,14 +129,14 @@ public class Okno extends javax.swing.JFrame {
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
                         .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PasswordLabel))
+                            .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordLabel))
                         .addGap(18, 18, 18)
                         .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ZalogujButton)
+                            .addComponent(zlogujButton)
                             .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(LoginField, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                .addComponent(PasswordField)))
+                                .addComponent(loginField, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                .addComponent(passwordField)))
                         .addGap(267, 267, 267))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -143,7 +148,7 @@ public class Okno extends javax.swing.JFrame {
                         .addComponent(ZalogujSieLabel))
                     .addGroup(loginPanelLayout.createSequentialGroup()
                         .addGap(363, 363, 363)
-                        .addComponent(RejestracjaButton)))
+                        .addComponent(rejestracjaButton)))
                 .addContainerGap(379, Short.MAX_VALUE))
         );
         loginPanelLayout.setVerticalGroup(
@@ -153,18 +158,18 @@ public class Okno extends javax.swing.JFrame {
                 .addComponent(ZalogujSieLabel)
                 .addGap(52, 52, 52)
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LoginLabel))
+                    .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginLabel))
                 .addGap(18, 18, 18)
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PasswordLabel)
-                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordLabel)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(ZalogujButton)
+                .addComponent(zlogujButton)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(RejestracjaButton)
+                .addComponent(rejestracjaButton)
                 .addGap(87, 87, 87))
         );
 
@@ -382,28 +387,28 @@ public class Okno extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoginFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginFieldMouseClicked
-        LoginField.setText("");        
-        LoginField.setForeground(Color.BLACK);
-    }//GEN-LAST:event_LoginFieldMouseClicked
+    private void loginFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginFieldMouseClicked
+        loginField.setText("");        
+        loginField.setForeground(Color.BLACK);
+    }//GEN-LAST:event_loginFieldMouseClicked
 
-    private void ZalogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ZalogujButtonMouseClicked
+    private void zlogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zlogujButtonMouseClicked
         loginPanel.setVisible(false);
         menuPanel.setVisible(true);
-    }//GEN-LAST:event_ZalogujButtonMouseClicked
+    }//GEN-LAST:event_zlogujButtonMouseClicked
 
     private void wylogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wylogujButtonMouseClicked
         menuPanel.setVisible(false);
         loginPanel.setVisible(true);
     }//GEN-LAST:event_wylogujButtonMouseClicked
 
-    private void RejestracjaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RejestracjaButtonMouseClicked
+    private void rejestracjaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rejestracjaButtonMouseClicked
         Rejestracja rej = new Rejestracja();
         rej.setTitle("Rejestracja");
         rej.setLocationRelativeTo(null);
         rej.setVisible(true);
         
-    }//GEN-LAST:event_RejestracjaButtonMouseClicked
+    }//GEN-LAST:event_rejestracjaButtonMouseClicked
 
     private void szukajButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_szukajButtonMouseClicked
         JPanel panel = new JPanel();
@@ -451,12 +456,6 @@ public class Okno extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField LoginField;
-    private javax.swing.JLabel LoginLabel;
-    private javax.swing.JPasswordField PasswordField;
-    private javax.swing.JLabel PasswordLabel;
-    private javax.swing.JButton RejestracjaButton;
-    private javax.swing.JButton ZalogujButton;
     private javax.swing.JLabel ZalogujSieLabel;
     private javax.swing.JPanel dodajTab;
     private javax.swing.JButton historiaTranskacjiButton;
@@ -469,19 +468,25 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel kontoTab;
+    private javax.swing.JTextField loginField;
+    private javax.swing.JLabel loginLabel;
     private javax.swing.JLayeredPane loginPanel;
     private javax.swing.JLayeredPane menuPanel;
     private javax.swing.JLabel nazwaKontaDB;
     private javax.swing.JLabel nazwaKontaLabel;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JPanel przegladajPanel;
     private javax.swing.JScrollPane przegladajScrollPane;
     private javax.swing.JPanel przegladajTab;
+    private javax.swing.JButton rejestracjaButton;
     private javax.swing.JButton szukajButton;
     private javax.swing.JTextField szukajTextField;
     private javax.swing.JTabbedPane tabPanel;
     private javax.swing.JLabel twojeRezerwacjeLabel;
     private javax.swing.JTextPane twojeRezerwacjeText;
     private javax.swing.JButton wylogujButton;
+    private javax.swing.JButton zlogujButton;
     private javax.swing.JButton zmienHasloButton;
     // End of variables declaration//GEN-END:variables
 }
