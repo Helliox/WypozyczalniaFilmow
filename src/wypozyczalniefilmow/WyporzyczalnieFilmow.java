@@ -6,25 +6,13 @@
 package wypozyczalniefilmow;
 
 import JFrames.Okno;
-import jpaDAO.*;
-import models.*;
-import Interface.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-/**
- *
- * @author Rozkurwozaur
- */
+
 
 public class WyporzyczalnieFilmow {
-    //protected static EntityManager em;
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
-        //EntityManager em = null;
-        //Customer customer = em.find(Customer.class, 0);
-        //System.out.println(customer.getLastName());
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         Okno frame1 = context.getBean(Okno.class);
         frame1.setTitle("Wyporzyczalnia Filmów XD");

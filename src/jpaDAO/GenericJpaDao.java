@@ -9,6 +9,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import javax.persistence.EntityManager;
 import factory.JpaFactory;
+import models.Customer;
 
 import org.springframework.stereotype.Service;
 /**

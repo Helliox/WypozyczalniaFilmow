@@ -9,11 +9,13 @@ import org.springframework.stereotype.Component;
 import java.awt.Color;
 import javax.persistence.EntityManager;
 import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import jpaDAO.CustomerJpaDao;
 import jpaDAO.GenericJpaDao;
 import models.Customer;
 import wypozyczalniefilmow.FilmRow;
+
 
 /**
  *
@@ -26,9 +28,11 @@ public class Okno extends javax.swing.JFrame {
     /**
      * Creates new form Okno
      */
-    
+    private boolean admin;
+    private String nazwaKonta;
     public Okno() {
         initComponents();
+        this.admin=false;
     }
     public void Zaloguj()
     {
@@ -45,12 +49,16 @@ public class Okno extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dodajPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         loginPanel = new javax.swing.JLayeredPane();
         loginField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
         loginLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
-        zlogujButton = new javax.swing.JButton();
+        zalogujButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         rejestracjaButton = new javax.swing.JButton();
         ZalogujSieLabel = new javax.swing.JLabel();
@@ -62,12 +70,11 @@ public class Okno extends javax.swing.JFrame {
         przegladajPanel = new javax.swing.JPanel();
         szukajTextField = new javax.swing.JTextField();
         dodajTab = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         kontoTab = new javax.swing.JPanel();
         nazwaKontaLabel = new javax.swing.JLabel();
-        idLabel = new javax.swing.JLabel();
         nazwaKontaDB = new javax.swing.JLabel();
-        idDB = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         zmienHasloButton = new javax.swing.JButton();
@@ -77,6 +84,48 @@ public class Okno extends javax.swing.JFrame {
         twojeRezerwacjeText = new javax.swing.JTextPane();
         historiaTranskacjiButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+
+        dodajPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        dodajPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dodajPanelMouseClicked(evt);
+            }
+        });
+
+        jLabel2.setText("jLabel2");
+
+        jTextField1.setText("jTextField1");
+
+        jButton2.setText("jButton2");
+
+        javax.swing.GroupLayout dodajPanelLayout = new javax.swing.GroupLayout(dodajPanel);
+        dodajPanel.setLayout(dodajPanelLayout);
+        dodajPanelLayout.setHorizontalGroup(
+            dodajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dodajPanelLayout.createSequentialGroup()
+                .addGroup(dodajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dodajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(dodajPanelLayout.createSequentialGroup()
+                            .addGap(258, 258, 258)
+                            .addComponent(jLabel2)
+                            .addGap(308, 308, 308)))
+                    .addGroup(dodajPanelLayout.createSequentialGroup()
+                        .addGap(342, 342, 342)
+                        .addComponent(jButton2)))
+                .addContainerGap(223, Short.MAX_VALUE))
+        );
+        dodajPanelLayout.setVerticalGroup(
+            dodajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dodajPanelLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jLabel2)
+                .addGap(13, 13, 13)
+                .addComponent(jButton2)
+                .addGap(52, 52, 52)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(287, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,10 +141,15 @@ public class Okno extends javax.swing.JFrame {
 
         passwordLabel.setText("Hasło:");
 
-        zlogujButton.setText("Zaloguj");
-        zlogujButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        zalogujButton.setText("Zaloguj");
+        zalogujButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                zlogujButtonMouseClicked(evt);
+                zalogujButtonMouseClicked(evt);
+            }
+        });
+        zalogujButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zalogujButtonActionPerformed(evt);
             }
         });
 
@@ -115,7 +169,7 @@ public class Okno extends javax.swing.JFrame {
         loginPanel.setLayer(passwordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
         loginPanel.setLayer(loginLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         loginPanel.setLayer(passwordLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        loginPanel.setLayer(zlogujButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        loginPanel.setLayer(zalogujButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         loginPanel.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         loginPanel.setLayer(rejestracjaButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         loginPanel.setLayer(ZalogujSieLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -133,7 +187,7 @@ public class Okno extends javax.swing.JFrame {
                             .addComponent(passwordLabel))
                         .addGap(18, 18, 18)
                         .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(zlogujButton)
+                            .addComponent(zalogujButton)
                             .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(loginField, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                                 .addComponent(passwordField)))
@@ -165,13 +219,19 @@ public class Okno extends javax.swing.JFrame {
                     .addComponent(passwordLabel)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(zlogujButton)
+                .addComponent(zalogujButton)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(rejestracjaButton)
                 .addGap(87, 87, 87))
         );
+
+        tabPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabPanelMouseClicked(evt);
+            }
+        });
 
         szukajButton.setText("Szukaj");
         szukajButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -224,34 +284,56 @@ public class Okno extends javax.swing.JFrame {
 
         tabPanel.addTab("                                                      Przeglądaj                                                       ", przegladajTab);
 
-        jTextField1.setText("jTextField1");
+        dodajTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dodajTabMouseClicked(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setVisible(false);
+
+        jLabel3.setText("gowno");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(222, 222, 222)
+                .addComponent(jLabel3)
+                .addContainerGap(252, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(126, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(99, 99, 99))
+        );
 
         javax.swing.GroupLayout dodajTabLayout = new javax.swing.GroupLayout(dodajTab);
         dodajTab.setLayout(dodajTabLayout);
         dodajTabLayout.setHorizontalGroup(
             dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dodajTabLayout.createSequentialGroup()
-                .addGap(232, 232, 232)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addGap(178, 178, 178)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         dodajTabLayout.setVerticalGroup(
             dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dodajTabLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(417, Short.MAX_VALUE))
+                .addGap(124, 124, 124)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("                                            Dodaj                                                    ", dodajTab);
 
         nazwaKontaLabel.setText("Nazwa konta:");
 
-        idLabel.setText("Id:");
-
         nazwaKontaDB.setText("***");
-
-        idDB.setText("***");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -282,13 +364,10 @@ public class Okno extends javax.swing.JFrame {
             kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kontoTabLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(idLabel)
-                    .addComponent(nazwaKontaLabel))
+                .addComponent(nazwaKontaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nazwaKontaDB)
-                    .addComponent(idDB)
                     .addComponent(zmienHasloButton))
                 .addGap(71, 71, 71)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,11 +410,7 @@ public class Okno extends javax.swing.JFrame {
                         .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nazwaKontaLabel)
                             .addComponent(nazwaKontaDB))
-                        .addGap(18, 18, 18)
-                        .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idLabel)
-                            .addComponent(idDB))
-                        .addGap(44, 44, 44)
+                        .addGap(76, 76, 76)
                         .addComponent(zmienHasloButton))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -392,12 +467,35 @@ public class Okno extends javax.swing.JFrame {
         loginField.setForeground(Color.BLACK);
     }//GEN-LAST:event_loginFieldMouseClicked
 
-    private void zlogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zlogujButtonMouseClicked
-        loginPanel.setVisible(false);
-        menuPanel.setVisible(true);
-    }//GEN-LAST:event_zlogujButtonMouseClicked
+    private void zalogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zalogujButtonMouseClicked
+        String login = loginField.getText();
+        char[] passwordTEMP = passwordField.getPassword();
+        String password = new String(passwordTEMP);
+        CustomerJpaDao cdao = new CustomerJpaDao();
+        Customer session = cdao.findByLogin(login,password);
+        if(session==null)
+        {
+            JOptionPane.showMessageDialog(this,"Niepoprawne dane logowania!.","Autentykacja nieudana",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            if(session.getActive()==true)
+                {
+                    this.admin=true;
+                    jPanel1.setVisible(true);
+                    System.out.println("Jest active");
+                }
+            nazwaKonta = session.getLogin();
+            nazwaKontaDB.setText(nazwaKonta);
+            loginPanel.setVisible(false);
+            menuPanel.setVisible(true);
+        }       
+    }//GEN-LAST:event_zalogujButtonMouseClicked
 
     private void wylogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wylogujButtonMouseClicked
+        this.admin=false;
+        nazwaKonta=null;
+        nazwaKontaDB.setText("***");
         menuPanel.setVisible(false);
         loginPanel.setVisible(true);
     }//GEN-LAST:event_wylogujButtonMouseClicked
@@ -419,6 +517,23 @@ public class Okno extends javax.swing.JFrame {
         przegladajPanel.revalidate();
         przegladajPanel.repaint();
     }//GEN-LAST:event_szukajButtonMouseClicked
+
+    private void zalogujButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zalogujButtonActionPerformed
+        
+        
+    }//GEN-LAST:event_zalogujButtonActionPerformed
+
+    private void tabPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPanelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabPanelMouseClicked
+
+    private void dodajPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dodajPanelMouseClicked
+        
+    }//GEN-LAST:event_dodajPanelMouseClicked
+
+    private void dodajTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dodajTabMouseClicked
+
+    }//GEN-LAST:event_dodajTabMouseClicked
 
     /**
      * @param args the command line arguments
@@ -457,12 +572,15 @@ public class Okno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ZalogujSieLabel;
+    private javax.swing.JPanel dodajPanel;
     private javax.swing.JPanel dodajTab;
     private javax.swing.JButton historiaTranskacjiButton;
-    private javax.swing.JLabel idDB;
-    private javax.swing.JLabel idLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
@@ -486,7 +604,7 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JLabel twojeRezerwacjeLabel;
     private javax.swing.JTextPane twojeRezerwacjeText;
     private javax.swing.JButton wylogujButton;
-    private javax.swing.JButton zlogujButton;
+    private javax.swing.JButton zalogujButton;
     private javax.swing.JButton zmienHasloButton;
     // End of variables declaration//GEN-END:variables
 }

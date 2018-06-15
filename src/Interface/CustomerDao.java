@@ -10,5 +10,5 @@ import models.Customer;
  * @author Rozkurwozaur
  */
 public interface CustomerDao<T,K> extends GenericDao<Customer,Long> {
-    T findByLogin(K login);
+    Customer findByLogin(String login, String haslo);
 }

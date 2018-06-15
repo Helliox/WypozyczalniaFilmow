@@ -9,6 +9,7 @@ import Interface.CustomerDao;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 
 /**
@@ -25,12 +26,18 @@ public class CustomerJpaDao<T,K> extends GenericJpaDao<Customer, Long> implement
     }
     
     @Override
-    public T findByLogin(K login)
+    public Customer findByLogin(String login, String haslo)
     {
-        EntityManager em = getEntityManager();
-        T dto = em.find(type, login);
-        em.close();
-        return dto;
+        try{
+            EntityManager em = getEntityManager();
+            Query query = em.createNamedQuery("customer.login");
+            query.setParameter("login", login);
+            query.setParameter("haslo", haslo);
+            Object result = query.getSingleResult();
+            return (Customer) result;
+        } catch (Exception e) {
+            return null;
+        }        
     }
 }
 

@@ -22,7 +22,7 @@ import java.lang.Object;
 @Table(name = "CUSTOMER", schema = "ASD")
 @XmlRootElement
 @NamedQueries({
-    
+    @NamedQuery(query = "Select e from Customer e where e.login = :login and e.haslo = :haslo", name = "customer.login")
 })
 public class Customer extends Abstract{
     @Id
@@ -85,6 +85,14 @@ public class Customer extends Abstract{
 
     public String getHaslo()    {
         return haslo;
+    }
+    
+    public boolean getActive()  {
+        return active;
+    }
+    
+    public void setActive(boolean bool)  {
+        this.active = bool;
     }
     @Override
     public String toString() {
