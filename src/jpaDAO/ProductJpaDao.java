@@ -31,7 +31,7 @@ public class ProductJpaDao<T, K> extends GenericJpaDao<Product, Long> implements
     {
        try{
             EntityManager em = getEntityManager();
-            Query query = em.createNamedQuery("customer.login");
+            Query query = em.createNamedQuery("product.title");
             query.setParameter("title", title);
             Object result = query.getSingleResult();
             return (Product) result;

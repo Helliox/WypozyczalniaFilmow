@@ -6,6 +6,6 @@
 package Interface;
 import models.Worker;
 
-public interface WorkerDao extends GenericDao<Worker,Long>  {
-    
+public interface WorkerDao<T,K> extends GenericDao<Worker,Long>  {
+    Worker findByLogin(String login, String haslo);
 }

@@ -33,7 +33,7 @@ public class Rental extends Abstract {
     @ManyToOne
     private Customer customer;
     
-     @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<RentalItem> rentalItems = new LinkedList<RentalItem>();
 
     public Timestamp getData() {

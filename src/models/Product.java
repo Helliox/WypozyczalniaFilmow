@@ -62,6 +62,6 @@ public class Product extends Abstract {
     }
      @Override
     public String toString() {
-        return "["+getId()+","+title+","+price;
+        return "["+getId()+","+title+","+price+"]";
     }
 }

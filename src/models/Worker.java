@@ -4,23 +4,39 @@
  * and open the template in the editor.
  */
 package models;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author DanPat
  */
 @Entity
 @Table(name = "WORKER", schema = "ASD")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(query = "Select e from Worker e where e.login = :login and e.haslo = :haslo", name = "worker.login")
+})
 public class Worker extends Abstract{
-    @Id private Long id;
+    @Id 
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    @Column(nullable=false)
     private String login;
-    private String password;
+    @Column(nullable=false)
+    private String haslo;
+    @Column(nullable=false)
     private String email;
+    @Column(nullable=false)
     private String firstName;
+    @Column(nullable=false)
     private String lastName;
-    
     public String getLogin() {
         return login;
     }
@@ -29,11 +45,11 @@ public class Worker extends Abstract{
         this.login = login;
     }
     public String getPassword() {
-        return password;
+        return haslo;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.haslo = password;
     }
     public String getFirstName() {
         return firstName;
