@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,9 +23,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name="PRODUCT", schema="ASD")
 @XmlRootElement
-public class Product extends Abstract {
-    
-    
+@NamedQueries({
+    @NamedQuery(query = "Select e from Product e where e.title = :title", name = "product.title")
+})
+public class Product extends Abstract {   
     @Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;

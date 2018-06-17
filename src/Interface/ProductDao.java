@@ -10,5 +10,5 @@ import models.Product;
  * @author DanPat
  */
 public interface ProductDao<T, K> extends GenericDao<Product,Long>  {
-    T findByName(K name);
+    Product findByName(String title);
 }

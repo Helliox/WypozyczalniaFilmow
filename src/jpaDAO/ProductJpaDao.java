@@ -9,6 +9,8 @@ import Interface.ProductDao;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import models.Customer;
 import models.Product;
 /**
  *
@@ -25,11 +27,16 @@ public class ProductJpaDao<T, K> extends GenericJpaDao<Product, Long> implements
     }
     
     @Override
-    public T findByName(K name)
+    public Product findByName(String title)
     {
-        EntityManager em = getEntityManager();
-        T dto = em.find(type, name);
-        em.close();
-        return dto;
+       try{
+            EntityManager em = getEntityManager();
+            Query query = em.createNamedQuery("customer.login");
+            query.setParameter("title", title);
+            Object result = query.getSingleResult();
+            return (Product) result;
+        } catch (Exception e) {
+            return null;
+        }        
     }
 }
