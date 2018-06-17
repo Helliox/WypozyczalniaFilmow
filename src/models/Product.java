@@ -77,7 +77,7 @@ public class Product extends Abstract {
     }
      @Override
     public String toString() {
-        return "["+getId()+","+title+","+price;
+        return "["+getId()+","+title+","+price+"]";
     }
     @Override
     public void setId(Long id)
