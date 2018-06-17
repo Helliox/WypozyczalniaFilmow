@@ -4,6 +4,7 @@
  */
 
 package Interface;
+import java.util.List;
 import models.Product;
 /**
  *
@@ -11,4 +12,6 @@ import models.Product;
  */
 public interface ProductDao<T, K> extends GenericDao<Product,Long>  {
     Product findByName(String title);
+    long amount();
+    List<Product> findAllProducts();
 }

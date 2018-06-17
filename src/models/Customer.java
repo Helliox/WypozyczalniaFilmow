@@ -14,6 +14,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.lang.Object;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 /**
  *
  * @author Rozkurwozaur
@@ -40,6 +44,8 @@ public class Customer extends Abstract{
     private String haslo;
     @Column
     private boolean active;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "customer")
+    private List<Rental> rental;
     
     public Customer()
     {
@@ -97,6 +103,11 @@ public class Customer extends Abstract{
     @Override
     public String toString() {
         return "["+getId()+","+firstName+","+lastName+","+email+"]";
+    }
+    @Override
+    public Long getId()
+    {
+        return id;
     }
 }
 

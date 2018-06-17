@@ -7,6 +7,9 @@ package JFrames;
 
 import org.springframework.stereotype.Component;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.sql.Timestamp;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
@@ -14,8 +17,12 @@ import javax.swing.JPanel;
 import jpaDAO.CustomerJpaDao;
 import jpaDAO.GenericJpaDao;
 import jpaDAO.ProductJpaDao;
+import jpaDAO.RentalItemJpaDao;
+import jpaDAO.RentalJpaDao;
 import models.Customer;
 import models.Product;
+import models.Rental;
+import models.RentalItem;
 import wypozyczalniefilmow.FilmRow;
 
 
@@ -31,17 +38,13 @@ public class Okno extends javax.swing.JFrame {
      * Creates new form Okno
      */
     private boolean admin;
+    private long idKonta;
     private String nazwaKonta;
     public Okno() {
         initComponents();
         this.admin=false;
     }
-    public void Zaloguj()
-    {
-        String name = loginField.getText();
-        char[] passwordTEMP = passwordField.getPassword();
-        
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,6 +74,10 @@ public class Okno extends javax.swing.JFrame {
         przegladajScrollPane = new javax.swing.JScrollPane();
         przegladajPanel = new javax.swing.JPanel();
         szukajTextField = new javax.swing.JTextField();
+        zobaczWszystkieButton = new javax.swing.JButton();
+        wypozyczButton = new javax.swing.JButton();
+        idTextField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         dodajTab = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -252,6 +259,8 @@ public class Okno extends javax.swing.JFrame {
 
         przegladajScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        przegladajPanel.setLayout(new BoxLayout(przegladajPanel,BoxLayout.Y_AXIS));
+
         javax.swing.GroupLayout przegladajPanelLayout = new javax.swing.GroupLayout(przegladajPanel);
         przegladajPanel.setLayout(przegladajPanelLayout);
         przegladajPanelLayout.setHorizontalGroup(
@@ -265,6 +274,22 @@ public class Okno extends javax.swing.JFrame {
 
         przegladajScrollPane.setViewportView(przegladajPanel);
 
+        zobaczWszystkieButton.setText("Zobacz wszystkie");
+        zobaczWszystkieButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                zobaczWszystkieButtonMouseClicked(evt);
+            }
+        });
+
+        wypozyczButton.setText("Wypożycz");
+        wypozyczButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                wypozyczButtonMouseClicked(evt);
+            }
+        });
+
+        jLabel8.setText("Id:");
+
         javax.swing.GroupLayout przegladajTabLayout = new javax.swing.GroupLayout(przegladajTab);
         przegladajTab.setLayout(przegladajTabLayout);
         przegladajTabLayout.setHorizontalGroup(
@@ -273,12 +298,21 @@ public class Okno extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(przegladajTabLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(zobaczWszystkieButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(szukajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(szukajButton))
-                    .addComponent(przegladajScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE))
+                    .addComponent(przegladajScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, przegladajTabLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(wypozyczButton, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(227, 227, 227))
         );
         przegladajTabLayout.setVerticalGroup(
             przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,10 +320,16 @@ public class Okno extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(szukajButton)
-                    .addComponent(szukajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(szukajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(zobaczWszystkieButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(przegladajScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(wypozyczButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addContainerGap())
         );
 
         tabPanel.addTab("                                                      Przeglądaj                                                       ", przegladajTab);
@@ -379,19 +419,19 @@ public class Okno extends javax.swing.JFrame {
                 .addGroup(dodajTabLayout.createSequentialGroup()
                     .addGap(297, 297, 297)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(234, Short.MAX_VALUE)))
+                    .addContainerGap(258, Short.MAX_VALUE)))
         );
         dodajTabLayout.setVerticalGroup(
             dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dodajTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(dodajTabLayout.createSequentialGroup()
                     .addGap(27, 27, 27)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(433, Short.MAX_VALUE)))
+                    .addContainerGap(443, Short.MAX_VALUE)))
         );
 
         tabPanel.addTab("                                            Dodaj                                                    ", dodajTab);
@@ -451,14 +491,14 @@ public class Okno extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(kontoTabLayout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                                 .addComponent(wylogujButton)
                                 .addGap(47, 47, 47))))))
             .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(kontoTabLayout.createSequentialGroup()
                     .addGap(692, 692, 692)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(187, Short.MAX_VALUE)))
+                    .addContainerGap(211, Short.MAX_VALUE)))
         );
         kontoTabLayout.setVerticalGroup(
             kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,12 +522,12 @@ public class Okno extends javax.swing.JFrame {
                 .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(historiaTranskacjiButton)
                     .addComponent(jButton1))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
             .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(kontoTabLayout.createSequentialGroup()
                     .addGap(83, 83, 83)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(112, Short.MAX_VALUE)))
+                    .addContainerGap(122, Short.MAX_VALUE)))
         );
 
         tabPanel.addTab("      Konto       ", kontoTab);
@@ -513,13 +553,15 @@ public class Okno extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(0, 75, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(menuPanel))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(menuPanel))
         );
@@ -540,7 +582,7 @@ public class Okno extends javax.swing.JFrame {
         Customer session = cdao.findByLogin(login,password);
         if(session==null)
         {
-            JOptionPane.showMessageDialog(this,"Niepoprawne dane logowania!.","Autentykacja nieudana",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Niepoprawne dane logowania!","Autentykacja nieudana",JOptionPane.ERROR_MESSAGE);
         }
         else
         {
@@ -548,19 +590,22 @@ public class Okno extends javax.swing.JFrame {
                 {
                     this.admin=true;
                     jPanel1.setVisible(true);
-                    System.out.println("Jest active");
                 }
+            idKonta = session.getId();
             nazwaKonta = session.getLogin();
             nazwaKontaDB.setText(nazwaKonta);
             loginPanel.setVisible(false);
             menuPanel.setVisible(true);
-        }       
+            System.out.println(idKonta);
+        }
+        
     }//GEN-LAST:event_zalogujButtonMouseClicked
 
     private void wylogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wylogujButtonMouseClicked
         this.admin=false;
         nazwaKonta=null;
         nazwaKontaDB.setText("***");
+        przegladajPanel.removeAll();
         menuPanel.setVisible(false);
         loginPanel.setVisible(true);
     }//GEN-LAST:event_wylogujButtonMouseClicked
@@ -574,13 +619,27 @@ public class Okno extends javax.swing.JFrame {
     }//GEN-LAST:event_rejestracjaButtonMouseClicked
 
     private void szukajButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_szukajButtonMouseClicked
+        
         JPanel panel = new JPanel();
-        //panelTEST.setLayout(new BoxLayout(panelTEST, BoxLayout.PAGE_AXIS));
-        przegladajPanel.setLayout(new BoxLayout(przegladajPanel,BoxLayout.Y_AXIS));
-        FilmRow.add(panel);
-        przegladajPanel.add(panel);
-        przegladajPanel.revalidate();
-        przegladajPanel.repaint();
+        panel.setLayout(new FlowLayout());
+        ProductJpaDao pdao = new ProductJpaDao();
+        try{
+            przegladajPanel.removeAll();
+            String szukana = szukajTextField.getText();
+            Product product = pdao.findByName(szukana);
+            FilmRow.add(panel,product.getTitle(),product.getPrice(),product.getStates(),product.getId());
+            przegladajPanel.setLayout(new BoxLayout(przegladajPanel,BoxLayout.Y_AXIS));
+            przegladajPanel.add(panel);
+            przegladajPanel.revalidate();
+            przegladajPanel.repaint();
+        }
+        catch(Exception e){
+            przegladajPanel.removeAll();
+            przegladajPanel.setLayout(new BoxLayout(przegladajPanel,BoxLayout.Y_AXIS));
+            przegladajPanel.revalidate();
+            przegladajPanel.repaint();
+        }
+
     }//GEN-LAST:event_szukajButtonMouseClicked
 
     private void zalogujButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zalogujButtonActionPerformed
@@ -613,6 +672,48 @@ public class Okno extends javax.swing.JFrame {
         pdao.save(product);
         JOptionPane.showMessageDialog(this,"Pomyślnie dodano film.");
     }//GEN-LAST:event_dodajButtonMouseClicked
+
+    private void zobaczWszystkieButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zobaczWszystkieButtonMouseClicked
+        przegladajPanel.removeAll();
+        przegladajPanel.setLayout(new BoxLayout(przegladajPanel,BoxLayout.Y_AXIS));
+        ProductJpaDao pdao = new ProductJpaDao();
+        List<Product> emps = pdao.findAllProducts();
+        for(int i=0;i<emps.size();i++)
+        {
+            JPanel panel = new JPanel();
+            panel.setLayout(new FlowLayout());
+            FilmRow.add(panel,emps.get(i).getTitle(),emps.get(i).getPrice(),emps.get(i).getStates(),emps.get(i).getId());
+            przegladajPanel.add(panel);
+            przegladajPanel.revalidate();
+            przegladajPanel.repaint();
+        }
+    }//GEN-LAST:event_zobaczWszystkieButtonMouseClicked
+
+    private void wypozyczButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wypozyczButtonMouseClicked
+        try{
+            String filmId = idTextField.getText();
+            Long id = Long.parseLong(filmId);
+            RentalJpaDao rdao = new RentalJpaDao();
+            RentalItemJpaDao ridao = new RentalItemJpaDao();
+            ProductJpaDao pdao = new ProductJpaDao();
+            CustomerJpaDao cdao = new CustomerJpaDao();
+            Product product = (Product) pdao.findById(id);
+            Customer loggedCustomer = (Customer) cdao.findById(idKonta);
+            RentalItem ritem = new RentalItem();
+            ritem.setProduct(product);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            Rental rental = new Rental();
+            rental.setDate(timestamp);
+            rental.setCustomer(loggedCustomer);
+            ritem.setRental(rental);
+            rdao.save(rental);
+            ridao.save(ritem);
+            JOptionPane.showMessageDialog(this,"Pomyślnie wypożyczono film.","Autentykacja nieudana",JOptionPane.PLAIN_MESSAGE);
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_wypozyczButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -656,6 +757,7 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JPanel dodajPanel;
     private javax.swing.JPanel dodajTab;
     private javax.swing.JButton historiaTranskacjiButton;
+    private javax.swing.JTextField idTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -665,6 +767,7 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -691,7 +794,9 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JTextPane twojeRezerwacjeText;
     private javax.swing.JTextField tytulTextField;
     private javax.swing.JButton wylogujButton;
+    private javax.swing.JButton wypozyczButton;
     private javax.swing.JButton zalogujButton;
     private javax.swing.JButton zmienHasloButton;
+    private javax.swing.JButton zobaczWszystkieButton;
     // End of variables declaration//GEN-END:variables
 }

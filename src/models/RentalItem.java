@@ -7,9 +7,11 @@ package models;
 
 import java.sql.Timestamp;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,11 +25,13 @@ import javax.persistence.Table;
 public class RentalItem extends Abstract {
       
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    //@ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rentalItemsP", nullable=false)
     private Product product;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rentalItemsR", nullable=false)
     private Rental rental;
       
     public Product getProduct() {

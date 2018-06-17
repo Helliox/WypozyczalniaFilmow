@@ -8,6 +8,8 @@ package jpaDAO;
 import Interface.ProductDao;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Collection;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import models.Customer;
@@ -31,12 +33,37 @@ public class ProductJpaDao<T, K> extends GenericJpaDao<Product, Long> implements
     {
        try{
             EntityManager em = getEntityManager();
-            Query query = em.createNamedQuery("customer.login");
+            Query query = em.createNamedQuery("product.title");
             query.setParameter("title", title);
             Object result = query.getSingleResult();
             return (Product) result;
         } catch (Exception e) {
             return null;
         }        
+    }
+    @Override
+    public long amount()
+    {
+        try{
+            EntityManager em = getEntityManager();
+            Query query = em.createNamedQuery("product.count");
+            Object result = query.getSingleResult();
+            return (long) result;
+        }
+        catch (Exception e){
+            return 0;
+        }
+    }
+    @Override
+    public List<Product> findAllProducts()
+    {
+        try{
+            EntityManager em = getEntityManager();
+            Query query = em.createQuery("SELECT e FROM Product e");
+            return (List<Product>) query.getResultList();
+        }
+        catch(Exception e){
+            return null;
+        }
     }
 }

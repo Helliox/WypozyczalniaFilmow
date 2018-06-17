@@ -10,9 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,20 +29,21 @@ import javax.persistence.Table;
 public class Rental extends Abstract {
       
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Timestamp data;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rental", nullable=false)
     private Customer customer;
     
-     @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<RentalItem> rentalItems = new LinkedList<RentalItem>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "rental")
+    private List<RentalItem> rentalItemsR;
 
-    public Timestamp getData() {
+    public Timestamp getDate() {
         return data;
     }
 
-    public void setData(Timestamp data) {
+    public void setDate(Timestamp data) {
         this.data=data;
     }
     public Customer getCustomer() {
@@ -52,12 +55,12 @@ public class Rental extends Abstract {
     }
     
     public void addRentalItem(RentalItem pi) {
-        rentalItems.add(pi);
+        rentalItemsR.add(pi);
         pi.setRental(this);
     }
 
     public List<RentalItem> getPurchaseItems() {
-        return rentalItems;
+        return rentalItemsR;
     }
 
 }

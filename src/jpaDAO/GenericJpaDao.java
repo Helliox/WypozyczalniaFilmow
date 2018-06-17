@@ -30,6 +30,7 @@ public class GenericJpaDao<T, K> implements GenericDao<T, K> {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(t);
+        em.flush();
         em.getTransaction().commit();
         em.close();
     }
