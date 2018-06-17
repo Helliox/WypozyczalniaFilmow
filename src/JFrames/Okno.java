@@ -13,7 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import jpaDAO.CustomerJpaDao;
 import jpaDAO.GenericJpaDao;
+import jpaDAO.ProductJpaDao;
 import models.Customer;
+import models.Product;
 import wypozyczalniefilmow.FilmRow;
 
 
@@ -71,6 +73,14 @@ public class Okno extends javax.swing.JFrame {
         szukajTextField = new javax.swing.JTextField();
         dodajTab = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        cenaTextField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        tytulTextField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        stanTextField = new javax.swing.JTextField();
+        dodajButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         kontoTab = new javax.swing.JPanel();
         nazwaKontaLabel = new javax.swing.JLabel();
@@ -246,7 +256,7 @@ public class Okno extends javax.swing.JFrame {
         przegladajPanel.setLayout(przegladajPanelLayout);
         przegladajPanelLayout.setHorizontalGroup(
             przegladajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 823, Short.MAX_VALUE)
+            .addGap(0, 1124, Short.MAX_VALUE)
         );
         przegladajPanelLayout.setVerticalGroup(
             przegladajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,7 +277,7 @@ public class Okno extends javax.swing.JFrame {
                         .addComponent(szukajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(szukajButton))
-                    .addComponent(przegladajScrollPane, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(przegladajScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE))
                 .addContainerGap())
         );
         przegladajTabLayout.setVerticalGroup(
@@ -279,7 +289,7 @@ public class Okno extends javax.swing.JFrame {
                     .addComponent(szukajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(przegladajScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         tabPanel.addTab("                                                      Przeglądaj                                                       ", przegladajTab);
@@ -293,40 +303,95 @@ public class Okno extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setVisible(false);
 
-        jLabel3.setText("gowno");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Dodaj Film");
+
+        jLabel5.setText("Tytuł:");
+
+        jLabel6.setText("Cena:");
+
+        jLabel7.setText("Stan:");
+
+        dodajButton.setText("Dodaj");
+        dodajButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dodajButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addComponent(jLabel3)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addGap(260, 260, 260)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(43, 43, 43)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(cenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tytulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(stanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dodajButton))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(203, 203, 203)))
+                .addContainerGap(354, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(99, 99, 99))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel4)
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tytulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(stanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(dodajButton)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Panel dostępny tylko dla administratorów");
 
         javax.swing.GroupLayout dodajTabLayout = new javax.swing.GroupLayout(dodajTab);
         dodajTab.setLayout(dodajTabLayout);
         dodajTabLayout.setHorizontalGroup(
             dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dodajTabLayout.createSequentialGroup()
-                .addGap(178, 178, 178)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dodajTabLayout.createSequentialGroup()
+                    .addGap(297, 297, 297)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(234, Short.MAX_VALUE)))
         );
         dodajTabLayout.setVerticalGroup(
             dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dodajTabLayout.createSequentialGroup()
-                .addGap(124, 124, 124)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dodajTabLayout.createSequentialGroup()
+                    .addGap(27, 27, 27)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(433, Short.MAX_VALUE)))
         );
 
         tabPanel.addTab("                                            Dodaj                                                    ", dodajTab);
@@ -386,14 +451,14 @@ public class Okno extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(kontoTabLayout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                                 .addComponent(wylogujButton)
                                 .addGap(47, 47, 47))))))
             .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(kontoTabLayout.createSequentialGroup()
                     .addGap(692, 692, 692)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(151, Short.MAX_VALUE)))
+                    .addContainerGap(187, Short.MAX_VALUE)))
         );
         kontoTabLayout.setVerticalGroup(
             kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,12 +482,12 @@ public class Okno extends javax.swing.JFrame {
                 .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(historiaTranskacjiButton)
                     .addComponent(jButton1))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
             .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(kontoTabLayout.createSequentialGroup()
                     .addGap(83, 83, 83)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(104, Short.MAX_VALUE)))
+                    .addContainerGap(112, Short.MAX_VALUE)))
         );
 
         tabPanel.addTab("      Konto       ", kontoTab);
@@ -535,6 +600,20 @@ public class Okno extends javax.swing.JFrame {
 
     }//GEN-LAST:event_dodajTabMouseClicked
 
+    private void dodajButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dodajButtonMouseClicked
+        String tytul = tytulTextField.getText();
+        String cenaTEMP = cenaTextField.getText();
+        String stan = stanTextField.getText();
+        double cena = Double.parseDouble(cenaTEMP);
+        ProductJpaDao pdao = new ProductJpaDao();
+        Product product = new Product();
+        product.setTitle(tytul);
+        product.setPrice(cena);
+        product.setStates(stan);
+        pdao.save(product);
+        JOptionPane.showMessageDialog(this,"Pomyślnie dodano film.");
+    }//GEN-LAST:event_dodajButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -572,6 +651,8 @@ public class Okno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ZalogujSieLabel;
+    private javax.swing.JTextField cenaTextField;
+    private javax.swing.JButton dodajButton;
     private javax.swing.JPanel dodajPanel;
     private javax.swing.JPanel dodajTab;
     private javax.swing.JButton historiaTranskacjiButton;
@@ -580,6 +661,10 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -598,11 +683,13 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JScrollPane przegladajScrollPane;
     private javax.swing.JPanel przegladajTab;
     private javax.swing.JButton rejestracjaButton;
+    private javax.swing.JTextField stanTextField;
     private javax.swing.JButton szukajButton;
     private javax.swing.JTextField szukajTextField;
     private javax.swing.JTabbedPane tabPanel;
     private javax.swing.JLabel twojeRezerwacjeLabel;
     private javax.swing.JTextPane twojeRezerwacjeText;
+    private javax.swing.JTextField tytulTextField;
     private javax.swing.JButton wylogujButton;
     private javax.swing.JButton zalogujButton;
     private javax.swing.JButton zmienHasloButton;

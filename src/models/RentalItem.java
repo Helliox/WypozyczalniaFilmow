@@ -7,6 +7,8 @@ package models;
 
 import java.sql.Timestamp;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,8 +22,10 @@ import javax.persistence.Table;
 @Table(name="RENTAL_ITEM", schema="ASD")
 public class RentalItem extends Abstract {
       
-    @Id private Long id;
-    @ManyToOne
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    //@ManyToOne
     private Product product;
     @ManyToOne
     private Rental rental;

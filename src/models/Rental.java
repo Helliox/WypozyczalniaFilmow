@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -24,7 +26,9 @@ import javax.persistence.Table;
 @Table(name="RENTAL", schema="ASD")
 public class Rental extends Abstract {
       
-    @Id private Long id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
     private Timestamp data;
     @ManyToOne
     private Customer customer;
