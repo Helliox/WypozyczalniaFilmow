@@ -814,7 +814,7 @@ public class Okno extends javax.swing.JFrame {
         List<RentalItem> emps = rdao.findAllProductsR(idKonta);
         for(int i=0;i<emps.size();i++)
         {
-            twojeRezerwacjeText.append("Tytul: "+emps.get(i).getProduct().getTitle()+"\tData wypozyczenia: "+emps.get(i).getDate()+"\tid:"+emps.get(i).getProduct().getId()+"Status:"+emps.get(i).getFinished()+"\n");
+            twojeRezerwacjeText.append("Tytul: "+emps.get(i).getProduct().getTitle()+"\tData transakcji: "+emps.get(i).getDate()+"\tid filmu: "+emps.get(i).getProduct().getId()+"\tStatus: "+emps.get(i).getFinished()+"\n");
         }
             
     }//GEN-LAST:event_odswiezButtonMouseClicked
@@ -915,7 +915,7 @@ public class Okno extends javax.swing.JFrame {
             {
                 product.setStates("Dostępne");
                 List<RentalItem> rentalItemsP = product.getRentalItems();
-                RentalItem rent = rentalItemsP.get(0);
+                RentalItem rent = rentalItemsP.get(rentalItemsP.size()-1);
                 rent.setFinished("Zakończone");
                 rdao.update(rent);
                 pdao.update(product);
