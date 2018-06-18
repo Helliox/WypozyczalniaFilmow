@@ -28,24 +28,24 @@ public class FilmRow {
     
     public static JPanel add(JPanel panel, String tytul, double cena, String status, Long id)
     {
-        JLabel label1 = new JLabel(tytul);
+        JLabel label1 = new JLabel("Tytuł: "+tytul);
         String cenaStr = String.valueOf(cena);
-        JLabel label2 = new JLabel(cenaStr);
-        JLabel label3 = new JLabel(status);
+        JLabel label2 = new JLabel("Cena: "+cenaStr);
+        JLabel label3 = new JLabel("Status: "+status);
         String idStr = String.valueOf(id);
-        JLabel label4 = new JLabel(idStr);
+        JLabel label4 = new JLabel("Id: "+idStr);
         javax.swing.border.Border blackline = BorderFactory.createLoweredBevelBorder();
         
         //panel.setPreferredSize(new Dimension(150, 100));
-        label1.setMaximumSize(new Dimension(200,14));
-        label1.setPreferredSize(new Dimension(200,14));
-        label1.setMinimumSize(new Dimension(200,14));
+        label1.setMaximumSize(new Dimension(250,14));
+        label1.setPreferredSize(new Dimension(250,14));
+        label1.setMinimumSize(new Dimension(250,14));
         label2.setMaximumSize(new Dimension(200,14));
         label2.setPreferredSize(new Dimension(200,14));
         label2.setMinimumSize(new Dimension(200,14));
-        label3.setMaximumSize(new Dimension(200,14));
-        label3.setPreferredSize(new Dimension(200,14));
-        label3.setMinimumSize(new Dimension(200,14));
+        label3.setMaximumSize(new Dimension(350,14));
+        label3.setPreferredSize(new Dimension(350,14));
+        label3.setMinimumSize(new Dimension(350,14));
         panel.setMaximumSize(new Dimension(850,70));
         panel.setPreferredSize(new Dimension(850,70));
         panel.setMinimumSize(new Dimension(850,70));

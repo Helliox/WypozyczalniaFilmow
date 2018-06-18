@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.BoxLayout;
@@ -18,10 +22,8 @@ import jpaDAO.CustomerJpaDao;
 import jpaDAO.GenericJpaDao;
 import jpaDAO.ProductJpaDao;
 import jpaDAO.RentalItemJpaDao;
-import jpaDAO.RentalJpaDao;
 import models.Customer;
 import models.Product;
-import models.Rental;
 import models.RentalItem;
 import wypozyczalniefilmow.FilmRow;
 
@@ -54,10 +56,6 @@ public class Okno extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dodajPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         loginPanel = new javax.swing.JLayeredPane();
         loginField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
@@ -78,6 +76,11 @@ public class Okno extends javax.swing.JFrame {
         wypozyczButton = new javax.swing.JButton();
         idTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        zarezerwujButton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        idRezerText = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jXDatePicker = new org.jdesktop.swingx.JXDatePicker();
         dodajTab = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -85,64 +88,34 @@ public class Okno extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         tytulTextField = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        stanTextField = new javax.swing.JTextField();
         dodajButton = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        idEditText = new javax.swing.JTextField();
+        titleEditText = new javax.swing.JTextField();
+        priceEditText = new javax.swing.JTextField();
+        updateButton = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        idDelete = new javax.swing.JTextField();
+        usunButton = new javax.swing.JButton();
+        zwrocButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         kontoTab = new javax.swing.JPanel();
         nazwaKontaLabel = new javax.swing.JLabel();
         nazwaKontaDB = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        zmienHasloButton = new javax.swing.JButton();
         twojeRezerwacjeLabel = new javax.swing.JLabel();
         wylogujButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        twojeRezerwacjeText = new javax.swing.JTextPane();
-        historiaTranskacjiButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-
-        dodajPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        dodajPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dodajPanelMouseClicked(evt);
-            }
-        });
-
-        jLabel2.setText("jLabel2");
-
-        jTextField1.setText("jTextField1");
-
-        jButton2.setText("jButton2");
-
-        javax.swing.GroupLayout dodajPanelLayout = new javax.swing.GroupLayout(dodajPanel);
-        dodajPanel.setLayout(dodajPanelLayout);
-        dodajPanelLayout.setHorizontalGroup(
-            dodajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dodajPanelLayout.createSequentialGroup()
-                .addGroup(dodajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dodajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(dodajPanelLayout.createSequentialGroup()
-                            .addGap(258, 258, 258)
-                            .addComponent(jLabel2)
-                            .addGap(308, 308, 308)))
-                    .addGroup(dodajPanelLayout.createSequentialGroup()
-                        .addGap(342, 342, 342)
-                        .addComponent(jButton2)))
-                .addContainerGap(223, Short.MAX_VALUE))
-        );
-        dodajPanelLayout.setVerticalGroup(
-            dodajPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dodajPanelLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel2)
-                .addGap(13, 13, 13)
-                .addComponent(jButton2)
-                .addGap(52, 52, 52)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(287, Short.MAX_VALUE))
-        );
+        odswiezButton = new javax.swing.JButton();
+        anulujRezButton = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        twojeRezerwacjeText = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -244,6 +217,8 @@ public class Okno extends javax.swing.JFrame {
                 .addGap(87, 87, 87))
         );
 
+        tabPanel.setToolTipText("");
+        tabPanel.setName(""); // NOI18N
         tabPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabPanelMouseClicked(evt);
@@ -290,6 +265,17 @@ public class Okno extends javax.swing.JFrame {
 
         jLabel8.setText("Id:");
 
+        zarezerwujButton.setText("Zarezerwuj");
+        zarezerwujButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                zarezerwujButtonMouseClicked(evt);
+            }
+        });
+
+        jLabel10.setText("Id:");
+
+        jLabel11.setText("Data:");
+
         javax.swing.GroupLayout przegladajTabLayout = new javax.swing.GroupLayout(przegladajTab);
         przegladajTab.setLayout(przegladajTabLayout);
         przegladajTabLayout.setHorizontalGroup(
@@ -301,18 +287,26 @@ public class Okno extends javax.swing.JFrame {
                         .addComponent(zobaczWszystkieButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(szukajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(24, 24, 24)
                         .addComponent(szukajButton))
-                    .addComponent(przegladajScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, przegladajTabLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(wypozyczButton, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(227, 227, 227))
+                    .addComponent(przegladajScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, przegladajTabLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(idRezerText, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(jXDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(zarezerwujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(wypozyczButton, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(90, 90, 90))
         );
         przegladajTabLayout.setVerticalGroup(
             przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,11 +318,16 @@ public class Okno extends javax.swing.JFrame {
                     .addComponent(zobaczWszystkieButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(przegladajScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addGroup(przegladajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wypozyczButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(zarezerwujButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(idRezerText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(jXDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -341,6 +340,8 @@ public class Okno extends javax.swing.JFrame {
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setName(""); // NOI18N
         jPanel1.setVisible(false);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -350,12 +351,47 @@ public class Okno extends javax.swing.JFrame {
 
         jLabel6.setText("Cena:");
 
-        jLabel7.setText("Stan:");
-
         dodajButton.setText("Dodaj");
         dodajButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dodajButtonMouseClicked(evt);
+            }
+        });
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Edytuj Film");
+
+        jLabel12.setText("id:");
+
+        jLabel13.setText("Tytuł:");
+
+        jLabel14.setText("Cena:");
+
+        updateButton.setText("Uaktualnij");
+        updateButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateButtonMouseClicked(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel15.setText("Usuń / Zwróć Film");
+
+        jLabel7.setText("id:");
+
+        usunButton.setText("Usuń");
+        usunButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usunButtonMouseClicked(evt);
+            }
+        });
+
+        zwrocButton.setText("Zwróć");
+        zwrocButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                zwrocButtonMouseClicked(evt);
             }
         });
 
@@ -364,44 +400,103 @@ public class Okno extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addGap(43, 43, 43)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(cenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tytulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(stanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(dodajButton))))
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tytulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dodajButton))
+                        .addGap(81, 81, 81)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabel13))
+                            .addComponent(jLabel14))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idEditText)
+                            .addComponent(titleEditText)
+                            .addComponent(priceEditText)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(updateButton)
+                                .addGap(0, 60, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)))
+                .addGap(268, 268, 268))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(348, 348, 348)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(usunButton)
+                        .addGap(29, 29, 29)
+                        .addComponent(zwrocButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(203, 203, 203)))
-                .addContainerGap(354, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addComponent(idDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel15)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel4)
-                .addGap(47, 47, 47)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tytulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(38, 38, 38)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(tytulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(cenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addComponent(dodajButton))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12)
+                                .addComponent(idEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel13)
+                                .addComponent(titleEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel14)
+                                .addComponent(priceEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(11, 11, 11)
+                .addComponent(updateButton)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(stanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(dodajButton)
-                .addContainerGap(178, Short.MAX_VALUE))
+                    .addComponent(idDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usunButton)
+                    .addComponent(zwrocButton))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -414,19 +509,19 @@ public class Okno extends javax.swing.JFrame {
             .addGroup(dodajTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
             .addGroup(dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(dodajTabLayout.createSequentialGroup()
                     .addGap(297, 297, 297)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(258, Short.MAX_VALUE)))
+                    .addContainerGap(350, Short.MAX_VALUE)))
         );
         dodajTabLayout.setVerticalGroup(
             dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dodajTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(dodajTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(dodajTabLayout.createSequentialGroup()
                     .addGap(27, 27, 27)
@@ -434,17 +529,13 @@ public class Okno extends javax.swing.JFrame {
                     .addContainerGap(443, Short.MAX_VALUE)))
         );
 
-        tabPanel.addTab("                                            Dodaj                                                    ", dodajTab);
+        tabPanel.addTab("                                           Panel                                                    ", dodajTab);
 
         nazwaKontaLabel.setText("Nazwa konta:");
 
         nazwaKontaDB.setText("***");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        zmienHasloButton.setText("Zmień hasło");
 
         twojeRezerwacjeLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         twojeRezerwacjeLabel.setText("Twoje Rezerwacje");
@@ -456,12 +547,21 @@ public class Okno extends javax.swing.JFrame {
             }
         });
 
+        odswiezButton.setText("Odśwież");
+        odswiezButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                odswiezButtonMouseClicked(evt);
+            }
+        });
+
+        anulujRezButton.setText("Anuluj rezerwację");
+
+        jLabel9.setText("id:");
+
+        twojeRezerwacjeText.setColumns(20);
+        twojeRezerwacjeText.setRows(5);
         twojeRezerwacjeText.setEditable(false);
-        jScrollPane2.setViewportView(twojeRezerwacjeText);
-
-        historiaTranskacjiButton.setText("Zobacz historię transakcji");
-
-        jButton1.setText("Anuluj rezerwację");
+        jScrollPane1.setViewportView(twojeRezerwacjeText);
 
         javax.swing.GroupLayout kontoTabLayout = new javax.swing.GroupLayout(kontoTab);
         kontoTab.setLayout(kontoTabLayout);
@@ -469,36 +569,31 @@ public class Okno extends javax.swing.JFrame {
             kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kontoTabLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(nazwaKontaLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nazwaKontaDB)
-                    .addComponent(zmienHasloButton))
-                .addGap(71, 71, 71)
+                    .addGroup(kontoTabLayout.createSequentialGroup()
+                        .addComponent(nazwaKontaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nazwaKontaDB))
+                    .addComponent(wylogujButton))
+                .addGap(142, 142, 142)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kontoTabLayout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(twojeRezerwacjeLabel)
-                        .addContainerGap())
-                    .addGroup(kontoTabLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(kontoTabLayout.createSequentialGroup()
-                                .addComponent(historiaTranskacjiButton)
+                                .addComponent(odswiezButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(kontoTabLayout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                                .addComponent(wylogujButton)
-                                .addGap(47, 47, 47))))))
-            .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(kontoTabLayout.createSequentialGroup()
-                    .addGap(692, 692, 692)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(211, Short.MAX_VALUE)))
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(anulujRezButton))))
+                    .addGroup(kontoTabLayout.createSequentialGroup()
+                        .addGap(236, 236, 236)
+                        .addComponent(twojeRezerwacjeLabel)))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         kontoTabLayout.setVerticalGroup(
             kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,25 +604,22 @@ public class Okno extends javax.swing.JFrame {
                         .addComponent(twojeRezerwacjeLabel)
                         .addGap(18, 18, 18)
                         .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(wylogujButton)
-                            .addComponent(jScrollPane2)))
-                    .addGroup(kontoTabLayout.createSequentialGroup()
-                        .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nazwaKontaLabel)
-                            .addComponent(nazwaKontaDB))
-                        .addGap(76, 76, 76)
-                        .addComponent(zmienHasloButton))
+                            .addComponent(jScrollPane1)
+                            .addGroup(kontoTabLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(wylogujButton)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nazwaKontaLabel)
+                        .addComponent(nazwaKontaDB))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(historiaTranskacjiButton)
-                    .addComponent(jButton1))
+                    .addComponent(odswiezButton)
+                    .addComponent(anulujRezButton)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(103, Short.MAX_VALUE))
-            .addGroup(kontoTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(kontoTabLayout.createSequentialGroup()
-                    .addGap(83, 83, 83)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(122, Short.MAX_VALUE)))
         );
 
         tabPanel.addTab("      Konto       ", kontoTab);
@@ -596,7 +688,6 @@ public class Okno extends javax.swing.JFrame {
             nazwaKontaDB.setText(nazwaKonta);
             loginPanel.setVisible(false);
             menuPanel.setVisible(true);
-            System.out.println(idKonta);
         }
         
     }//GEN-LAST:event_zalogujButtonMouseClicked
@@ -651,10 +742,6 @@ public class Okno extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabPanelMouseClicked
 
-    private void dodajPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dodajPanelMouseClicked
-        
-    }//GEN-LAST:event_dodajPanelMouseClicked
-
     private void dodajTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dodajTabMouseClicked
 
     }//GEN-LAST:event_dodajTabMouseClicked
@@ -662,13 +749,12 @@ public class Okno extends javax.swing.JFrame {
     private void dodajButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dodajButtonMouseClicked
         String tytul = tytulTextField.getText();
         String cenaTEMP = cenaTextField.getText();
-        String stan = stanTextField.getText();
         double cena = Double.parseDouble(cenaTEMP);
         ProductJpaDao pdao = new ProductJpaDao();
         Product product = new Product();
         product.setTitle(tytul);
         product.setPrice(cena);
-        product.setStates(stan);
+        product.setStates("Dostępne");
         pdao.save(product);
         JOptionPane.showMessageDialog(this,"Pomyślnie dodano film.");
     }//GEN-LAST:event_dodajButtonMouseClicked
@@ -693,27 +779,157 @@ public class Okno extends javax.swing.JFrame {
         try{
             String filmId = idTextField.getText();
             Long id = Long.parseLong(filmId);
-            RentalJpaDao rdao = new RentalJpaDao();
             RentalItemJpaDao ridao = new RentalItemJpaDao();
             ProductJpaDao pdao = new ProductJpaDao();
             CustomerJpaDao cdao = new CustomerJpaDao();
             Product product = (Product) pdao.findById(id);
-            Customer loggedCustomer = (Customer) cdao.findById(idKonta);
-            RentalItem ritem = new RentalItem();
-            ritem.setProduct(product);
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            Rental rental = new Rental();
-            rental.setDate(timestamp);
-            rental.setCustomer(loggedCustomer);
-            ritem.setRental(rental);
-            rdao.save(rental);
-            ridao.save(ritem);
-            JOptionPane.showMessageDialog(this,"Pomyślnie wypożyczono film.","Autentykacja nieudana",JOptionPane.PLAIN_MESSAGE);
+            if(product.getStates().equals("Dostępne"))
+            {
+                product.setStates("Wypożyczone przez "+nazwaKonta);
+                pdao.update(product);
+                Customer loggedCustomer = (Customer) cdao.findById(idKonta);
+                RentalItem ritem = new RentalItem();
+                ritem.setProduct(product);
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                ritem.setDate(dateFormat.format(date));
+                ritem.setCustomer(loggedCustomer);
+                ritem.setFinished("Wypożyczone");
+                ridao.save(ritem);
+                JOptionPane.showMessageDialog(this,"Pomyślnie wypożyczono film.","Wypożyczenie",JOptionPane.PLAIN_MESSAGE);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Produkt nie jest dostępny!","Błąd",JOptionPane.ERROR_MESSAGE);
+            }
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_wypozyczButtonMouseClicked
+
+    private void odswiezButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_odswiezButtonMouseClicked
+        twojeRezerwacjeText.setText("");    
+        RentalItemJpaDao rdao = new RentalItemJpaDao();
+        List<RentalItem> emps = rdao.findAllProductsR(idKonta);
+        for(int i=0;i<emps.size();i++)
+        {
+            twojeRezerwacjeText.append("Tytul: "+emps.get(i).getProduct().getTitle()+"\tData wypozyczenia: "+emps.get(i).getDate()+"\tid:"+emps.get(i).getProduct().getId()+"Status:"+emps.get(i).getFinished()+"\n");
+        }
+            
+    }//GEN-LAST:event_odswiezButtonMouseClicked
+
+    private void zarezerwujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zarezerwujButtonMouseClicked
+        try{
+            String idTEMP = idRezerText.getText();
+            Long id = Long.parseLong(idTEMP);
+            String date;
+            Calendar cals = Calendar.getInstance();
+            SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            formater.format(jXDatePicker.getDate());
+            date = formater.format(cals.getTime());
+            RentalItemJpaDao ridao = new RentalItemJpaDao();
+            ProductJpaDao pdao = new ProductJpaDao();
+            CustomerJpaDao cdao = new CustomerJpaDao();
+            Product product = (Product) pdao.findById(id);
+            if(product.getStates().equals("Dostępne"))
+            {
+                product.setStates("Zarezerwowane przez " +nazwaKonta);
+                pdao.update(product);
+                Customer loggedCustomer = (Customer) cdao.findById(idKonta);
+                RentalItem ritem = new RentalItem();
+                ritem.setProduct(product);
+                ritem.setDate(date);
+                ritem.setCustomer(loggedCustomer);
+                ritem.setFinished("Zarezerwowane");
+                ridao.save(ritem);
+                JOptionPane.showMessageDialog(this,"Pomyślnie zarezerwowano film.","Rezerwacja",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Produkt nie jest dostępny!","Błąd",JOptionPane.ERROR_MESSAGE);
+            }   
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_zarezerwujButtonMouseClicked
+
+    private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
+        try{
+            String title = titleEditText.getText();
+            String idTEMP = idEditText.getText();
+            Long id = Long.parseLong(idTEMP);
+            String priceTEMP = priceEditText.getText();
+            
+            
+            ProductJpaDao pdao = new ProductJpaDao();
+            Product product = (Product) pdao.findById(id);
+            if(!title.equals(""))
+            {
+                product.setTitle(title);
+            }
+            if(!priceTEMP.equals(""))
+            {
+                Double price = Double.parseDouble(priceTEMP);
+                product.setPrice(price);
+            }
+            pdao.update(product);
+            JOptionPane.showMessageDialog(this,"Pomyślnie zaktualizowano film.","Aktualizacja",JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_updateButtonMouseClicked
+
+    private void usunButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usunButtonMouseClicked
+        try{
+            String idTEMP = idDelete.getText();
+            Long id = Long.parseLong(idTEMP);
+            ProductJpaDao pdao = new ProductJpaDao();
+            Product product = (Product) pdao.findById(id);
+            if(product.getStates().equals("Dostępne"))
+            {
+                pdao.delete(product);
+                JOptionPane.showMessageDialog(this,"Pomyślnie usunięto film.","Usuwanie",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Nie można usunąć niedostępnego filmu","Błąd",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_usunButtonMouseClicked
+
+    private void zwrocButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zwrocButtonMouseClicked
+        try{
+            
+            String idTEMP = idDelete.getText();
+            Long id = Long.parseLong(idTEMP);
+            ProductJpaDao pdao = new ProductJpaDao();
+            RentalItemJpaDao rdao = new RentalItemJpaDao();
+            Product product = (Product) pdao.findById(id);
+            if(!product.getStates().equals("Dostępne"))
+            {
+                product.setStates("Dostępne");
+                List<RentalItem> rentalItemsP = product.getRentalItems();
+                RentalItem rent = rentalItemsP.get(0);
+                rent.setFinished("Zakończone");
+                rdao.update(rent);
+                pdao.update(product);
+                JOptionPane.showMessageDialog(this,"Pomyślnie zwrócono film.","Zwracanie filmu",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Nie można zwrócić dostępnego filmu","Błąd",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_zwrocButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -752,15 +968,21 @@ public class Okno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ZalogujSieLabel;
+    private javax.swing.JButton anulujRezButton;
     private javax.swing.JTextField cenaTextField;
     private javax.swing.JButton dodajButton;
-    private javax.swing.JPanel dodajPanel;
     private javax.swing.JPanel dodajTab;
-    private javax.swing.JButton historiaTranskacjiButton;
+    private javax.swing.JTextField idDelete;
+    private javax.swing.JTextField idEditText;
+    private javax.swing.JTextField idRezerText;
     private javax.swing.JTextField idTextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -768,11 +990,13 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTextField2;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker;
     private javax.swing.JPanel kontoTab;
     private javax.swing.JTextField loginField;
     private javax.swing.JLabel loginLabel;
@@ -780,23 +1004,28 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JLayeredPane menuPanel;
     private javax.swing.JLabel nazwaKontaDB;
     private javax.swing.JLabel nazwaKontaLabel;
+    private javax.swing.JButton odswiezButton;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTextField priceEditText;
     private javax.swing.JPanel przegladajPanel;
     private javax.swing.JScrollPane przegladajScrollPane;
     private javax.swing.JPanel przegladajTab;
     private javax.swing.JButton rejestracjaButton;
-    private javax.swing.JTextField stanTextField;
     private javax.swing.JButton szukajButton;
     private javax.swing.JTextField szukajTextField;
     private javax.swing.JTabbedPane tabPanel;
+    private javax.swing.JTextField titleEditText;
     private javax.swing.JLabel twojeRezerwacjeLabel;
-    private javax.swing.JTextPane twojeRezerwacjeText;
+    private javax.swing.JTextArea twojeRezerwacjeText;
     private javax.swing.JTextField tytulTextField;
+    private javax.swing.JButton updateButton;
+    private javax.swing.JButton usunButton;
     private javax.swing.JButton wylogujButton;
     private javax.swing.JButton wypozyczButton;
     private javax.swing.JButton zalogujButton;
-    private javax.swing.JButton zmienHasloButton;
+    private javax.swing.JButton zarezerwujButton;
     private javax.swing.JButton zobaczWszystkieButton;
+    private javax.swing.JButton zwrocButton;
     // End of variables declaration//GEN-END:variables
 }

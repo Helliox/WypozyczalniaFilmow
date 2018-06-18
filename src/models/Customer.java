@@ -44,8 +44,8 @@ public class Customer extends Abstract{
     private String haslo;
     @Column
     private boolean active;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "customer")
-    private List<Rental> rental;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "customer")
+    private List<RentalItem> rental;
     
     public Customer()
     {

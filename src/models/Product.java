@@ -42,7 +42,7 @@ public class Product extends Abstract {
     private Double price;
     @Column(nullable=false)
     private String states;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "product")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "product")
     private List<RentalItem> rentalItemsP;
 
     public String getTitle() {
@@ -72,7 +72,7 @@ public class Product extends Abstract {
         return rentalItemsP;
     }
 
-    public void setVisitD(List<RentalItem> rentalItems) {
+    public void setRentalItems(List<RentalItem> rentalItems) {
         this.rentalItemsP = rentalItems;
     }
      @Override
