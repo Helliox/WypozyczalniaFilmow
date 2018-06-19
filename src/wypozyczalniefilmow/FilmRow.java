@@ -5,20 +5,11 @@
  */
 package wypozyczalniefilmow;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.util.List;
-import javafx.scene.layout.Border;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import jpaDAO.ProductJpaDao;
-import models.Product;
 
 /**
  *

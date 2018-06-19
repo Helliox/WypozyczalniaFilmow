@@ -6,12 +6,11 @@
 package jpaDAO;
 import models.Customer;
 import Interface.CustomerDao;
-import JFrames.Rejestracja;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
 
 /**

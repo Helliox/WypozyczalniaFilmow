@@ -8,13 +8,11 @@ package jpaDAO;
 import Interface.ProductDao;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import models.Customer;
 import models.Product;
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 /**
  *
  * @author DanPat

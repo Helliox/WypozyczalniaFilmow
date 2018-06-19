@@ -10,7 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import models.RentalItem;
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
 /**
  *

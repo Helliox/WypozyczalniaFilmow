@@ -13,7 +13,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.lang.Object;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;

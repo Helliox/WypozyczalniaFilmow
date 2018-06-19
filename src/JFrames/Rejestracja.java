@@ -9,7 +9,7 @@ package JFrames;
 import javax.swing.JOptionPane;
 import jpaDAO.CustomerJpaDao;
 import models.Customer;
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
 
 /**
