@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
 import javax.persistence.EntityManager;
 import factory.JpaFactory;
 import models.Customer;
-import org.slf4j.Logger;
+import org.apache.log4j.*;
 
 import org.springframework.stereotype.Service;
 /**
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class GenericJpaDao<T, K> implements GenericDao<T, K> {
 
     private final Class<T> type;
-    Logger logger;
+    public static Logger logger = Logger.getLogger(GenericJpaDao.class);
     public GenericJpaDao() {
         Type t = getClass().getGenericSuperclass();
         ParameterizedType pt = (ParameterizedType) t;

@@ -807,7 +807,7 @@ public class Okno extends javax.swing.JFrame {
             }
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,e,"Błąd",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_wypozyczButtonMouseClicked
 
@@ -853,7 +853,7 @@ public class Okno extends javax.swing.JFrame {
             }   
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,e,"Błąd",JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_zarezerwujButtonMouseClicked
@@ -881,7 +881,7 @@ public class Okno extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Pomyślnie zaktualizowano film.","Aktualizacja",JOptionPane.INFORMATION_MESSAGE);
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,e,"Błąd",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_updateButtonMouseClicked
 
@@ -902,7 +902,7 @@ public class Okno extends javax.swing.JFrame {
             }
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,e,"Błąd",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_usunButtonMouseClicked
 
@@ -930,7 +930,7 @@ public class Okno extends javax.swing.JFrame {
             }
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,e,"Błąd",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_zwrocButtonMouseClicked
 
@@ -959,7 +959,7 @@ public class Okno extends javax.swing.JFrame {
             }
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,e,"Błąd",JOptionPane.ERROR_MESSAGE);
         }
             
     }//GEN-LAST:event_anulujRezButtonMouseClicked

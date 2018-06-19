@@ -14,7 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import models.Customer;
 import models.Product;
-import org.slf4j.Logger;
+import org.apache.log4j.*;
 /**
  *
  * @author DanPat
@@ -22,7 +22,7 @@ import org.slf4j.Logger;
 public class ProductJpaDao<T, K> extends GenericJpaDao<Product, Long> implements ProductDao<T, K> {
 
     private final Class<T> type;
-    Logger logger;
+    public static Logger logger = Logger.getLogger(ProductJpaDao.class);
     public ProductJpaDao() {
         Type t = getClass().getGenericSuperclass();
         ParameterizedType pt = (ParameterizedType) t;

@@ -10,14 +10,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import models.RentalItem;
-import org.slf4j.Logger;
+import org.apache.log4j.*;
 
 /**
  *
  * @author DanPat
  */
 public class RentalItemJpaDao  extends GenericJpaDao<RentalItem, Long> implements RentalItemDao {
-    Logger logger;
+    public static Logger logger = Logger.getLogger(RentalItemJpaDao.class);
     @Override
     public RentalItem findByItemId(Long id)
     {

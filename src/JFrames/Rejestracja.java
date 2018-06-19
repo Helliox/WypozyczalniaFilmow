@@ -9,58 +9,66 @@ package JFrames;
 import javax.swing.JOptionPane;
 import jpaDAO.CustomerJpaDao;
 import models.Customer;
-import org.slf4j.Logger;
+import org.apache.log4j.*;
+
 
 /**
  *
  * @author Rozkurwozaur
  */
 public class Rejestracja extends javax.swing.JFrame {
-    public Logger logger;
+     public static Logger logger = Logger.getLogger(Rejestracja.class);
     /** Creates new form Rejestracja */
     public Rejestracja() {
-        logger.debug("Enter in register method");
+        
+        logger.debug("Enter in register constructor");
         initComponents();
-        logger.debug("Exit of register method");
+        logger.debug("Exit of register constructor");
     }
     public void Zarejestruj()
     {
-        logger.debug("Enter in registering method");
-        String email = emailTextField.getText();
-        String firstName = imieTextField.getText();
-        String lastName = nazwiskoTextField.getText();
-        String login = loginTextField.getText();
-        char[] hasloTEMP = hasloTextField.getPassword();
-        char[] phasloTEMP = phasloTextField.getPassword();
-        String haslo = new String(hasloTEMP);
-        String phaslo = new String(phasloTEMP);
-        if(haslo.equals(phaslo))
-        {
-            CustomerJpaDao cdao = new CustomerJpaDao();
-            Customer customer = new Customer();
-            customer.setFirstName(firstName);
-            customer.setLastName(lastName);
-            customer.setEmail(email);
-            customer.setLogin(login);
-            customer.setHaslo(haslo);
-            cdao.save(customer);
-            int input = JOptionPane.showOptionDialog(this,"Pomyślnie stworzono konto.","Rejestracja",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE,null,null,null);
-            logger.debug("Succesful created account");
-            if( input == JOptionPane.OK_OPTION)
+        try{
+            logger.debug("Enter in registering method");
+            String email = emailTextField.getText();
+            String firstName = imieTextField.getText();
+            String lastName = nazwiskoTextField.getText();
+            String login = loginTextField.getText();
+            char[] hasloTEMP = hasloTextField.getPassword();
+            char[] phasloTEMP = phasloTextField.getPassword();
+            String haslo = new String(hasloTEMP);
+            String phaslo = new String(phasloTEMP);
+            if(haslo.equals(phaslo))
             {
-                dispose();
+                CustomerJpaDao cdao = new CustomerJpaDao();
+                Customer customer = new Customer();
+                customer.setFirstName(firstName);
+                customer.setLastName(lastName);
+                customer.setEmail(email);
+                customer.setLogin(login);
+                customer.setHaslo(haslo);
+                cdao.save(customer);
+                int input = JOptionPane.showOptionDialog(this,"Pomyślnie stworzono konto.","Rejestracja",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE,null,null,null);
+                logger.debug("Succesful created account");
+                if( input == JOptionPane.OK_OPTION)
+                {
+                    dispose();
+                }
+                else
+                {
+                    dispose();
+                }
             }
             else
             {
-                dispose();
+                JOptionPane.showMessageDialog(this,"Hasła muszą być takie same!.","ERROR",JOptionPane.ERROR_MESSAGE);
+                logger.error("Not the same passwords entered");
             }
+            logger.debug("Exit of registering method");
         }
-        else
+        catch (Exception e)
         {
-            JOptionPane.showMessageDialog(this,"Hasła muszą być takie same!.","ERROR",JOptionPane.ERROR_MESSAGE);
-            logger.error("Not the same passwords entered");
+            JOptionPane.showMessageDialog(this,e,"ERROR",JOptionPane.ERROR_MESSAGE);
         }
-        logger.debug("Exit of registering method");
     }
     
     /** This method is called from within the constructor to
