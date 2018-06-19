@@ -39,12 +39,11 @@ public class Okno extends javax.swing.JFrame {
     /**
      * Creates new form Okno
      */
-    private boolean admin;
+
     private long idKonta;
     private String nazwaKonta;
     public Okno() {
         initComponents();
-        this.admin=false;
     }
 
     /**
@@ -684,7 +683,6 @@ public class Okno extends javax.swing.JFrame {
         {
             if(session.getActive()==true)
                 {
-                    this.admin=true;
                     jPanel1.setVisible(true);
                 }
             idKonta = session.getId();
@@ -697,7 +695,8 @@ public class Okno extends javax.swing.JFrame {
     }//GEN-LAST:event_zalogujButtonMouseClicked
 
     private void wylogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wylogujButtonMouseClicked
-        this.admin=false;
+
+        jPanel1.setVisible(false);
         nazwaKonta=null;
         nazwaKontaDB.setText("***");
         przegladajPanel.removeAll();
