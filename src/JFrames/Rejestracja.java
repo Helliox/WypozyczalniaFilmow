@@ -9,19 +9,23 @@ package JFrames;
 import javax.swing.JOptionPane;
 import jpaDAO.CustomerJpaDao;
 import models.Customer;
+import org.slf4j.Logger;
 
 /**
  *
  * @author Rozkurwozaur
  */
 public class Rejestracja extends javax.swing.JFrame {
-
+    public Logger logger;
     /** Creates new form Rejestracja */
     public Rejestracja() {
+        logger.debug("Enter in register method");
         initComponents();
+        logger.debug("Exit of register method");
     }
     public void Zarejestruj()
     {
+        logger.debug("Enter in registering method");
         String email = emailTextField.getText();
         String firstName = imieTextField.getText();
         String lastName = nazwiskoTextField.getText();
@@ -41,6 +45,7 @@ public class Rejestracja extends javax.swing.JFrame {
             customer.setHaslo(haslo);
             cdao.save(customer);
             int input = JOptionPane.showOptionDialog(this,"Pomyślnie stworzono konto.","Rejestracja",JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE,null,null,null);
+            logger.debug("Succesful created account");
             if( input == JOptionPane.OK_OPTION)
             {
                 dispose();
@@ -53,7 +58,9 @@ public class Rejestracja extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(this,"Hasła muszą być takie same!.","ERROR",JOptionPane.ERROR_MESSAGE);
+            logger.error("Not the same passwords entered");
         }
+        logger.debug("Exit of registering method");
     }
     
     /** This method is called from within the constructor to

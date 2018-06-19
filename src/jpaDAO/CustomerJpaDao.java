@@ -10,6 +10,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.slf4j.Logger;
 
 
 /**
@@ -18,7 +19,7 @@ import javax.persistence.Query;
  */
 public class CustomerJpaDao<T,K> extends GenericJpaDao<Customer, Long> implements CustomerDao<T,K> {
     private final Class<T> type;
-    
+    Logger logger;
     public CustomerJpaDao() {
         Type t = getClass().getGenericSuperclass();
         ParameterizedType pt = (ParameterizedType) t;
@@ -28,6 +29,7 @@ public class CustomerJpaDao<T,K> extends GenericJpaDao<Customer, Long> implement
     @Override
     public Customer findByLogin(String login, String haslo)
     {
+        logger.debug("Enter in findByLogin method");
         try{
             EntityManager em = getEntityManager();
             Query query = em.createNamedQuery("customer.login");
@@ -36,7 +38,8 @@ public class CustomerJpaDao<T,K> extends GenericJpaDao<Customer, Long> implement
             Object result = query.getSingleResult();
             return (Customer) result;
         } catch (Exception e) {
-            return null;
+             logger.error("Error with findByLogin");
+            return null;  
         }        
     }
 }
