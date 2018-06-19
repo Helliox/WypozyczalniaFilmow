@@ -695,7 +695,7 @@ public class Okno extends javax.swing.JFrame {
     }//GEN-LAST:event_zalogujButtonMouseClicked
 
     private void wylogujButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wylogujButtonMouseClicked
-
+        twojeRezerwacjeText.setText("");
         jPanel1.setVisible(false);
         nazwaKonta=null;
         nazwaKontaDB.setText("***");
@@ -935,23 +935,33 @@ public class Okno extends javax.swing.JFrame {
     }//GEN-LAST:event_zwrocButtonMouseClicked
 
     private void anulujRezButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anulujRezButtonMouseClicked
-        String idTEMP = anulujText.getText();
-        Long id = Long.parseLong(idTEMP);
-        ProductJpaDao pdao = new ProductJpaDao();
-        RentalItemJpaDao rdao = new RentalItemJpaDao();
-        CustomerJpaDao cdao = new CustomerJpaDao();
-        RentalItem rental = (RentalItem) rdao.findById(id);
-        Customer customer = (Customer) cdao.findById(idKonta);
-        if(rental.getCustomer().getId()==customer.getId())
-        {
-            
-            rental.setFinished("Anulowane");
-            Product product = rental.getProduct();
-            product.setStates("Dostępne");
+        try{
+            String idTEMP = anulujText.getText();
+            Long id = Long.parseLong(idTEMP);
+            ProductJpaDao pdao = new ProductJpaDao();
+            RentalItemJpaDao rdao = new RentalItemJpaDao();
+            CustomerJpaDao cdao = new CustomerJpaDao();
+            RentalItem rental = (RentalItem) rdao.findById(id);
+            Customer customer = (Customer) cdao.findById(idKonta);
+            if(rental.getCustomer().getId()==customer.getId())
+            {
+
+                rental.setFinished("Anulowane");
+                Product product = rental.getProduct();
+                product.setStates("Dostępne");
                 rdao.update(rental);
                 pdao.update(product);
-                JOptionPane.showMessageDialog(this,"Pomyślnie zwrócono film.","Zwracanie filmu",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Pomyślnie anylowano rezerwację.","Anulowanie rezerwacji",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Nie można anulować tej rezerwacji","Błąd",JOptionPane.ERROR_MESSAGE);
+            }
         }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Błąd","Błąd",JOptionPane.ERROR_MESSAGE);
+        }
+            
     }//GEN-LAST:event_anulujRezButtonMouseClicked
 
     /**
