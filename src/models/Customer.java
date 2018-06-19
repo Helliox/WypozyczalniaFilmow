@@ -40,7 +40,7 @@ public class Customer extends Abstract{
     private String lastName;
     @Column(nullable=false)
     private String login;
-    @Column(nullable=false)
+    @Column(nullable=false,unique=true)
     private String haslo;
     @Column
     private boolean active;
