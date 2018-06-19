@@ -109,5 +109,12 @@ public class Customer extends Abstract{
     {
         return id;
     }
+    public List<RentalItem> getRentalItems() {
+        return rental;
+    }
+
+    public void setRentalItems(List<RentalItem> rentalItems) {
+        this.rental = rentalItems;
+    }
 }
 

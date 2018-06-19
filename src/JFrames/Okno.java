@@ -113,7 +113,7 @@ public class Okno extends javax.swing.JFrame {
         odswiezButton = new javax.swing.JButton();
         anulujRezButton = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        anulujText = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         twojeRezerwacjeText = new javax.swing.JTextArea();
 
@@ -459,31 +459,30 @@ public class Okno extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(38, 38, 38)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
-                                .addComponent(tytulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6)
-                                .addComponent(cenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addComponent(dodajButton))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(40, 40, 40)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel12)
-                                .addComponent(idEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel13)
-                                .addComponent(titleEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel14)
-                                .addComponent(priceEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(tytulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(cenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(dodajButton))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(idEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(titleEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(priceEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(11, 11, 11)
                 .addComponent(updateButton)
                 .addGap(22, 22, 22)
@@ -555,6 +554,11 @@ public class Okno extends javax.swing.JFrame {
         });
 
         anulujRezButton.setText("Anuluj rezerwację");
+        anulujRezButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                anulujRezButtonMouseClicked(evt);
+            }
+        });
 
         jLabel9.setText("id:");
 
@@ -587,7 +591,7 @@ public class Okno extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(anulujText, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(anulujRezButton))))
                     .addGroup(kontoTabLayout.createSequentialGroup()
@@ -618,7 +622,7 @@ public class Okno extends javax.swing.JFrame {
                     .addComponent(odswiezButton)
                     .addComponent(anulujRezButton)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(anulujText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(103, Short.MAX_VALUE))
         );
 
@@ -814,7 +818,7 @@ public class Okno extends javax.swing.JFrame {
         List<RentalItem> emps = rdao.findAllProductsR(idKonta);
         for(int i=0;i<emps.size();i++)
         {
-            twojeRezerwacjeText.append("Tytul: "+emps.get(i).getProduct().getTitle()+"\tData transakcji: "+emps.get(i).getDate()+"\tid filmu: "+emps.get(i).getProduct().getId()+"\tStatus: "+emps.get(i).getFinished()+"\n");
+            twojeRezerwacjeText.append("Tytul: "+emps.get(i).getProduct().getTitle()+"\tData transakcji: "+emps.get(i).getDate()+"\tid filmu: "+emps.get(i).getProduct().getId()+"\tid transakcji: "+emps.get(i).getId()+"\tStatus: "+emps.get(i).getFinished()+"\n");
         }
             
     }//GEN-LAST:event_odswiezButtonMouseClicked
@@ -931,6 +935,26 @@ public class Okno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_zwrocButtonMouseClicked
 
+    private void anulujRezButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anulujRezButtonMouseClicked
+        String idTEMP = anulujText.getText();
+        Long id = Long.parseLong(idTEMP);
+        ProductJpaDao pdao = new ProductJpaDao();
+        RentalItemJpaDao rdao = new RentalItemJpaDao();
+        CustomerJpaDao cdao = new CustomerJpaDao();
+        RentalItem rental = (RentalItem) rdao.findById(id);
+        Customer customer = (Customer) cdao.findById(idKonta);
+        if(rental.getCustomer().getId()==customer.getId())
+        {
+            
+            rental.setFinished("Anulowane");
+            Product product = rental.getProduct();
+            product.setStates("Dostępne");
+                rdao.update(rental);
+                pdao.update(product);
+                JOptionPane.showMessageDialog(this,"Pomyślnie zwrócono film.","Zwracanie filmu",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_anulujRezButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -969,6 +993,7 @@ public class Okno extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ZalogujSieLabel;
     private javax.swing.JButton anulujRezButton;
+    private javax.swing.JTextField anulujText;
     private javax.swing.JTextField cenaTextField;
     private javax.swing.JButton dodajButton;
     private javax.swing.JPanel dodajTab;
@@ -995,7 +1020,6 @@ public class Okno extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField2;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker;
     private javax.swing.JPanel kontoTab;
     private javax.swing.JTextField loginField;
